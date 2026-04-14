@@ -2,8 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Gem, Home, CheckCircle2, Phone, ArrowRight, Table, Calculator } from "lucide-react";
+import { CheckCircle2, Table, Calculator } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
@@ -39,7 +38,7 @@ export default function MishtiPage() {
                <p className="font-script text-3xl md:text-5xl text-gold-gradient">Holiday Homes</p>
             </div>
             <p className="text-ivory-muted max-w-2xl mx-auto text-lg italic font-light">
-              "Where family bonds return, roots reconnect, and wealth grows across generations."
+              &quot;Where family bonds return, roots reconnect, and wealth grows across generations.&quot;
             </p>
           </RevealOnScroll>
         </div>
@@ -64,7 +63,7 @@ export default function MishtiPage() {
                    As a foundational partner, you participate in a luxury resort asset built with absolute integrity and managed hospitality. You hold equity in a verified architectural masterpiece with documented longevity.
                  </p>
                  <div className="flex items-center gap-4 text-gold border-l-2 border-gold pl-6 py-2">
-                   <p className="font-display text-2xl italic">"The truth of architecture is a generational legacy."</p>
+                   <p className="font-display text-2xl italic">&quot;The truth of architecture is a generational legacy.&quot;</p>
                  </div>
                </div>
             </RevealOnScroll>

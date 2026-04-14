@@ -2,8 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { MoveRight, Phone, ArrowDown } from "lucide-react";
 import { COMPANY_DATA } from "@/lib/constants";
 import CTAButton from "@/components/shared/CTAButton";
 
@@ -20,7 +18,7 @@ export default function HeroSection() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let particles: any[] = [];
+    const particles: Particle[] = [];
     const particleCount = 60;
 
     const resize = () => {

@@ -2,7 +2,7 @@
 
 import React from "react";
 import GlassCard from "@/components/shared/GlassCard";
-import { TrendingUp, Users, ShieldCheck, Wallet, ArrowRight } from "lucide-react";
+import { TrendingUp, Users, ShieldCheck, Wallet } from "lucide-react";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 
 export function InvestmentComponents() {

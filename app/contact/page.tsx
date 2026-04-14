@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send, MessageCircle, Clock, ChevronRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Clock, ChevronRight } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
@@ -174,4 +174,3 @@ export default function ContactPage() {
   );
 }
 
-import { CheckCircle2 as CheckCircle } from "lucide-react";

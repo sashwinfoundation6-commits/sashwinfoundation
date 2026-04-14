@@ -1,11 +1,10 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { MoveRight, TrendingUp, Users, MapPin, Building2, Gem, Paintbrush, Hammer } from "lucide-react";
+import { MoveRight, Building2, Gem, Paintbrush } from "lucide-react";
 import GlassCard from "@/components/shared/GlassCard";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import CTAButton from "@/components/shared/CTAButton";
-import { COMPANY_DATA } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -174,7 +173,7 @@ export function LegacyVerification() {
             </h2>
             <div className="space-y-6 text-ivory/50 text-lg leading-relaxed font-light">
               <p>
-                At Sashwin, truth is encoded into every blueprint. We don't rely on promises; we rely on the physics of engineering and the precision of ISO documentation.
+                At Sashwin, truth is encoded into every blueprint. We don&apos;t rely on promises; we rely on the physics of engineering and the precision of ISO documentation.
               </p>
               <p>
                 From foundational soil testing to high-altitude structural verification, every Sashwin project is a documented truth. Efficiency of design is not just a metric—it is our faith.
@@ -205,7 +204,7 @@ export function LegacyVerification() {
                 <div className="absolute inset-0 bg-gradient-to-r from-void via-transparent to-transparent opacity-80" />
               </div>
               <div className="absolute -bottom-10 -left-10 bg-gold/10 backdrop-blur-3xl border border-gold/20 p-8 hidden md:block">
-                 <p className="text-gold font-display text-3xl mb-1 italic">"Truth in every line."</p>
+                 <p className="text-gold font-display text-3xl mb-1 italic">&quot;Truth in every line.&quot;</p>
                  <p className="text-ivory/40 text-[9px] uppercase tracking-[0.4em]">Engineered for Legacy</p>
               </div>
             </div>
@@ -303,7 +302,7 @@ export function GenerationalFaith() {
             <span className="text-gold italic">Generations.</span>
           </h2>
           <p className="text-ivory/60 text-xl max-w-3xl mx-auto leading-relaxed font-light mb-16 italic">
-            "We do not build for the moment. We build for the memories that haven't happened yet. Architecture is our faith in the future."
+            &quot;We do not build for the moment. We build for the memories that haven&apos;t happened yet. Architecture is our faith in the future.&quot;
           </p>
           <div className="flex justify-center">
             <Link href="/contact" className="px-20 py-8 bg-ivory text-void text-xs tracking-[0.6em] font-black uppercase hover:bg-gold transition-colors duration-700">

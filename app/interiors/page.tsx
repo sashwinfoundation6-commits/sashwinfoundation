@@ -2,8 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Paintbrush, Layout, ShieldCheck, Heart, CheckCircle2, ArrowRight } from "lucide-react";
+import { Paintbrush, Layout, ShieldCheck, Heart } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
@@ -35,7 +34,7 @@ export default function InteriorsPage() {
               <span className="text-gold italic">Aesthetics.</span>
             </h1>
             <p className="text-ivory-muted text-xl max-w-2xl mx-auto leading-relaxed">
-              We don't just design rooms; we curate experiences. Our interior design vertical focuses on "Luxury for Living" — combining ergonomics with high-end finishes.
+              We don&apos;t just design rooms; we curate experiences. Our interior design vertical focuses on &quot;Luxury for Living&quot; — combining ergonomics with high-end finishes.
             </p>
           </RevealOnScroll>
         </div>

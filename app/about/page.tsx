@@ -7,7 +7,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import GlassCard from "@/components/shared/GlassCard";
-import { COMPANY_DATA } from "@/lib/constants";
 
 export default function AboutPage() {
   return (
@@ -25,7 +24,7 @@ export default function AboutPage() {
               <span className="text-gold italic">Two Decades.</span>
             </h1>
             <p className="text-ivory-muted text-xl max-w-2xl leading-relaxed">
-              At Sashwin Foundation, we believe that architecture is the container of our lives. Since 2000, we've dedicated ourselves to technical perfection and aesthetic brilliance.
+              At Sashwin Foundation, we believe that architecture is the container of our lives. Since 2000, we&apos;ve dedicated ourselves to technical perfection and aesthetic brilliance.
             </p>
           </RevealOnScroll>
         </div>
@@ -108,7 +107,7 @@ export default function AboutPage() {
                  <TrendingUp className="w-10 h-10 text-gold mb-6 group-hover:scale-110 transition-transform" />
                  <h4 className="text-2xl font-display text-ivory mb-4 uppercase">2024</h4>
                  <p className="text-ivory-muted text-sm leading-relaxed">
-                    Launch of 'MISHTI Holiday Homes' — our flagship luxury resort investment vertical.
+                    Launch of &apos;MISHTI Holiday Homes&apos; — our flagship luxury resort investment vertical.
                  </p>
               </GlassCard>
            </div>

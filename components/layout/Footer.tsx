@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Building2, Phone, Mail, Globe, MapPin } from "lucide-react";
+import { Building2, Phone, Mail, MapPin } from "lucide-react";
 import { COMPANY_DATA } from "@/lib/constants";
 
 export default function Footer() {

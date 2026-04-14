@@ -3,12 +3,11 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2, ChevronRight, HardHat, Ruler, Building, Star, Clock, ShieldCheck } from "lucide-react";
+import { HardHat, Ruler, Building, ShieldCheck } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import GlassCard from "@/components/shared/GlassCard";
-import CTAButton from "@/components/shared/CTAButton";
 import { COMPANY_DATA } from "@/lib/constants";
 
 // --- FeatureList ---
@@ -16,22 +15,22 @@ const features = [
   {
     title: "In-house Architects & Engineers",
     description: "Our core team handles every blueprint and calculation. No outsourcing means perfect execution.",
-    icon: hardHat => <HardHat className="w-6 h-6" />
+    icon: () => <HardHat className="w-6 h-6" />
   },
   {
     title: "Direct Labour Force",
     description: "We eliminate mediator margins by managing our own labour force, passing the savings to you.",
-    icon: build => <Building className="w-6 h-6" />
+    icon: () => <Building className="w-6 h-6" />
   },
   {
     title: "ISO Standards Compliance",
     description: "Strict adherence to international quality benchmarks for every cubic foot constructed.",
-    icon: shield => <ShieldCheck className="w-6 h-6" />
+    icon: () => <ShieldCheck className="w-6 h-6" />
   },
   {
     title: "Material Transparency",
     description: "Client visibility on every purchase. Real-time auditing of material quality and cost.",
-    icon: ruler => <Ruler className="w-6 h-6" />
+    icon: () => <Ruler className="w-6 h-6" />
   }
 ];
 
@@ -60,7 +59,7 @@ export default function ConstructionPage() {
               Engineering <span className="text-gold italic">Legacy.</span>
             </h1>
             <p className="text-ivory-muted max-w-2xl mx-auto text-lg">
-              25 years of proven delivery in Coimbatore & Chennai. We don't just build structures; we craft enduring assets.
+              25 years of proven delivery in Coimbatore & Chennai. We don&apos;t just build structures; we craft enduring assets.
             </p>
           </RevealOnScroll>
         </div>

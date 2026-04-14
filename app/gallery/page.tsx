@@ -2,15 +2,21 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { X, Search, Filter, Camera, Building2, Home, Gem } from "lucide-react";
+import { X, Search, Camera } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
-import GlassCard from "@/components/shared/GlassCard";
 
 const galleryCategories = ["All", "Residential", "Commercial", "Interiors", "Mishti Resorts"];
 
-const galleryItems = [
+interface GalleryItem {
+  id: number;
+  category: string;
+  title: string;
+  img: string;
+}
+
+const galleryItems: GalleryItem[] = [
   { id: 1, category: "Mishti Resorts", title: "Mishti Infinity Pool", img: "/images/gallery-1.jpg" },
   { id: 2, category: "Residential", title: "The Golden Crest Facade", img: "/images/residential-bg.jpg" },
   { id: 3, category: "Interiors", title: "Minimalist Living Lounge", img: "/images/mishti-hero.jpg" },
@@ -21,7 +27,7 @@ const galleryItems = [
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
 
   const filteredItems = activeCategory === "All" 
     ? galleryItems 

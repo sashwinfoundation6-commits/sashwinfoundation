@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import GlassCard from "@/components/shared/GlassCard";
-import { TrendingUp, Percent, IndianRupee, Clock } from "lucide-react";
+import { TrendingUp, IndianRupee, Clock } from "lucide-react";
 
 export default function ROICalculator() {
   const [loanPercent, setLoanPercent] = useState(50);

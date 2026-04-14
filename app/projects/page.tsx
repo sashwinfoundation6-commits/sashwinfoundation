@@ -135,7 +135,7 @@ export default function ProjectsPage() {
          <div className="container mx-auto px-6 relative z-10 text-center">
             <RevealOnScroll>
               <h3 className="text-3xl md:text-5xl font-display text-ivory mb-8 italic">
-                "Quality is not an act, it is a habit."
+                &quot;Quality is not an act, it is a habit.&quot;
               </h3>
               <p className="text-gold tracking-[0.3em] text-sm uppercase">Engineering Excellence Since 2000</p>
             </RevealOnScroll>
@@ -171,4 +171,3 @@ export default function ProjectsPage() {
   );
 }
 
-import { Building2 } from "lucide-react";

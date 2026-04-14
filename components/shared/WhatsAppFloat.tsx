@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Phone } from "lucide-react";
 import { COMPANY_DATA } from "@/lib/constants";
 
 export default function WhatsAppFloat() {
