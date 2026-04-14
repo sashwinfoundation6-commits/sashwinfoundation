@@ -8,10 +8,14 @@ export const COMPANY_DATA = {
   cities: ["Coimbatore", "Chennai"],
   contact: {
     primary: "+91 90475 90675",
-    secondary: "+91 99622 78810",
+    secondary: "+91 90470 35184",
     email: "sashwinfoundation@gmail.com",
     website: "www.sashwinfoundation.com",
-    whatsapp: "919047590675"
+    whatsapp: "919047590675",
+    socials: {
+      instagram: "https://www.instagram.com/sashwinfoundation?igsh=MWFxcG1zOTBkaGdvcQ==",
+      facebook: "https://www.facebook.com/share/18gE6QQqkr/?mibextid=wwXIfr"
+    }
   },
   offices: [
     {
