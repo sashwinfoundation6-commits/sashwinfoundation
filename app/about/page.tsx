@@ -115,19 +115,61 @@ export default function AboutPage() {
       </section>
 
       {/* Core Expertise Section */}
-      <section className="py-24 bg-gradient-to-b from-void to-carbon">
+      <section className="py-24 bg-gradient-to-b from-void to-carbon overflow-hidden">
         <div className="container mx-auto px-6">
-           <div className="max-w-4xl mx-auto glass-card border-gold/10 p-12 text-center">
-              <RevealOnScroll>
-                 <h3 className="text-3xl font-display text-ivory mb-8">Why Thousands Trust Sashwin?</h3>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+           <div className="max-w-6xl mx-auto">
+              <RevealOnScroll className="text-center mb-16">
+                 <h3 className="text-3xl md:text-5xl font-display text-ivory mb-6">Technical Vanguard</h3>
+                 <p className="text-ivory/40 text-lg max-w-2xl mx-auto font-light">
+                   Engineering isn&apos;t just our profession—it is our primary evidence of truth.
+                 </p>
+              </RevealOnScroll>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+                 <div className="glass-card border-gold/10 p-12 hover:border-gold/30 transition-all">
+                    <h4 className="text-gold text-[10px] uppercase tracking-[0.4em] font-bold mb-6">The Sashwin Standard</h4>
+                    <ul className="space-y-6">
+                       {[
+                         { title: "M25+ Grade Concrete", detail: "Standardized across all residential builds as a minimum threshold." },
+                         { title: "Direct Labour Model", detail: "Ensuring 100% oversight and eliminating the 'dilution of truth' in subcontracting." },
+                         { title: "Material Traceability", detail: "Client portals providing live logs of brand, grade, and delivery status." },
+                         { title: "Foundation Redundancy", detail: "Structural safety factors 1.5x above standard code for inter-generational peace." }
+                       ].map((item, i) => (
+                         <li key={i} className="space-y-2">
+                            <p className="text-ivory font-bold text-sm tracking-wide">{item.title}</p>
+                            <p className="text-ivory/30 text-xs leading-relaxed">{item.detail}</p>
+                         </li>
+                       ))}
+                    </ul>
+                 </div>
+                 <div className="glass-card border-gold/10 p-12 hover:border-gold/30 transition-all flex flex-col justify-center">
+                    <h4 className="text-gold text-[10px] uppercase tracking-[0.4em] font-bold mb-6">ISO Verification</h4>
+                    <p className="text-ivory-muted text-lg leading-relaxed mb-8 italic">
+                      &quot;Every blueprint we sign is a legal and scientific commitment to structural honesty.&quot;
+                    </p>
+                    <div className="grid grid-cols-2 gap-8">
+                       <div>
+                          <p className="text-3xl font-display text-ivory mb-1">100%</p>
+                          <p className="text-[9px] uppercase tracking-widest text-gold font-bold">Audit Pass Rate</p>
+                       </div>
+                       <div>
+                          <p className="text-3xl font-display text-ivory mb-1">ZERO</p>
+                          <p className="text-[9px] uppercase tracking-widest text-gold font-bold">Safety Incidents</p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="glass-card border-gold/10 p-12 text-center">
+                 <h3 className="text-2xl font-display text-ivory mb-8">Building Faith Across Tamil Nadu</h3>
+                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
                     {[
-                      "Technical audit at every stage of construction",
-                      "Transparent material procurement with client portals",
-                      "Zero hidden costs and fixed-price contracts",
-                      "Integrated Architectural Interior Engineering",
-                      "Dedicated post-handover maintenance team",
-                      "High-resale value through premium branding"
+                      "Technical audit at every stage",
+                      "Transparent material procurement",
+                      "Zero hidden costs (Fixed Price)",
+                      "Integrated Architectural Design",
+                      "Post-handover verification",
+                      "High-resale brand authority"
                     ].map((point, i) => (
                       <div key={i} className="flex items-start gap-4">
                         <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-1" />
@@ -135,7 +177,7 @@ export default function AboutPage() {
                       </div>
                     ))}
                  </div>
-              </RevealOnScroll>
+              </div>
            </div>
         </div>
       </section>

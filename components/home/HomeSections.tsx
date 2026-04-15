@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { MoveRight, Building2, Gem, Paintbrush } from "lucide-react";
-import GlassCard from "@/components/shared/GlassCard";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import CTAButton from "@/components/shared/CTAButton";
 import Image from "next/image";
@@ -90,31 +89,37 @@ export function StatsCounter() {
   );
 }
 
-// --- ServicesGrid ---
-const services = [
+// --- CinematicServices ---
+const serviceDetails = [
   {
     title: "Signature Architecture",
-    description: "Engineering truth into physical form. We curate spaces that resonate with subconscious power.",
+    description: "Engineering truth into physical form. We curate spaces that resonate with subconscious power and light-path optimization.",
+    longDescription: "Our architectural process begins with a solar-path audit and psychological mapping. We don't just design buildings; we architect legacies that grow in value through efficient structural honesty.",
     icon: Gem,
     link: "/mishti",
     tag: "Asset Class",
-    color: "gold"
+    image: "/images/hero-bg.jpg",
+    specs: ["Solar-Path Alignment", "Psychological Flow Mapping", "LEED-Ready Blueprinting"]
   },
   {
     title: "Structural Integrity",
-    description: "Premium villas and residences built with absolute technical transparency and ISO precision.",
+    description: "Premium villas and residences built with absolute technical transparency and ISO precision standards.",
+    longDescription: "Every gram of steel and every cubic meter of concrete is documented. We utilize M25 grade standards as a minimum, ensuring that your foundation is as strong as your generational faith.",
     icon: Building2,
     link: "/construction",
     tag: "₹2,650/sq.ft",
-    color: "terra"
+    image: "/images/construction-bg.jpg",
+    specs: ["M25+ Grade Concrete", "Verified Steel Sourcing", "ISO 9001:2015 Documentation"]
   },
   {
     title: "Bespoke Interiors",
-    description: "Aesthetic efficiency. Every line is verified for psychological resonance and longevity.",
+    description: "Aesthetic efficiency. Every line is verified for psychological resonance and structural longevity.",
+    longDescription: "Interior design is the final layer of truth. We use material transparency—from Grade-A teak to low-VOC finishes—to ensure your living environment is both healthy and high-yield.",
     icon: Paintbrush,
     link: "/interiors",
     tag: "Standard of Truth",
-    color: "gold-BRIGHT"
+    image: "/images/gallery-1.jpg",
+    specs: ["Human-Centric Ergonomics", "Eco-Certified Materials", "Smart-Acoustic Engineering"]
   }
 ];
 
@@ -124,35 +129,58 @@ export function ServicesGrid() {
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="container mx-auto px-6">
-        <RevealOnScroll className="mb-16">
-          <h2 className="text-4xl md:text-6xl font-display text-ivory mb-6 max-w-2xl">
+        <RevealOnScroll className="mb-24">
+          <h2 className="text-4xl md:text-7xl font-display text-ivory mb-8 max-w-3xl leading-[1.1]">
             Diverse Verticals. <br />
             <span className="text-gold">One Standard of Integrity.</span>
           </h2>
-          <p className="text-ivory/40 text-lg max-w-xl font-light">
-            Providing turn-key truth in engineering and interior brilliance across South India.
+          <p className="text-ivory/40 text-xl max-w-xl font-light leading-relaxed">
+            Providing turn-key truth in engineering and interior brilliance across South India since 2000.
           </p>
         </RevealOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {services.map((service, i) => (
-            <RevealOnScroll key={i} delay={i * 200}>
-              <GlassCard className="h-full flex flex-col items-start hover:border-gold/30 group border-gold/5 bg-void/40 transition-all duration-700">
-                <div className="w-16 h-16 bg-void border border-gold/10 flex items-center justify-center rounded-none mb-10 group-hover:bg-gold transition-all duration-700">
-                  <service.icon className="w-7 h-7 text-gold group-hover:text-void transition-colors duration-700" />
+        <div className="space-y-32">
+          {serviceDetails.map((service, i) => (
+            <div 
+              key={i} 
+              className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center`}
+            >
+              <RevealOnScroll direction={i % 2 === 0 ? "left" : "right"} className="w-full lg:w-1/2">
+                <div className="relative aspect-[16/10] group overflow-hidden border border-gold/10">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-60" />
+                  <div className="absolute top-6 left-6 inline-block px-4 py-1.5 bg-void/80 backdrop-blur-md border border-gold/20 text-[9px] uppercase tracking-[0.4em] text-gold font-bold">
+                    {service.tag}
+                  </div>
                 </div>
-                <div className="inline-block px-4 py-1.5 bg-gold/5 border border-gold/10 rounded-none text-[9px] uppercase tracking-[0.4em] text-gold mb-6 font-bold">
-                  {service.tag}
+              </RevealOnScroll>
+
+              <RevealOnScroll direction={i % 2 === 0 ? "right" : "left"} className="w-full lg:w-1/2 space-y-8">
+                <div className="w-16 h-16 bg-void border border-gold/10 flex items-center justify-center">
+                  <service.icon className="w-7 h-7 text-gold" />
                 </div>
-                <h3 className="text-3xl font-display text-ivory mb-6 tracking-tight">{service.title}</h3>
-                <p className="text-ivory/50 text-sm mb-10 flex-grow leading-relaxed font-light">
-                  {service.description}
+                <h3 className="text-4xl md:text-5xl font-display text-ivory tracking-tight">{service.title}</h3>
+                <p className="text-ivory-muted text-lg leading-relaxed font-light">
+                  {service.longDescription}
                 </p>
-                <Link href={service.link} className="flex items-center gap-4 text-gold text-[10px] uppercase tracking-[0.3em] font-bold group/link hover:gap-6 transition-all">
-                  LEGACY PORTFOLIO <MoveRight className="w-4 h-4" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4">
+                  {service.specs.map((spec, j) => (
+                    <div key={j} className="flex items-center gap-3">
+                      <div className="w-1 h-1 bg-gold rounded-full" />
+                      <span className="text-[10px] uppercase tracking-widest text-gold font-bold">{spec}</span>
+                    </div>
+                  ))}
+                </div>
+                <Link href={service.link} className="inline-flex items-center gap-4 text-gold text-[10px] uppercase tracking-[0.4em] font-black group/link hover:gap-8 transition-all">
+                  LEGACY PORTFOLIO <MoveRight className="w-5 h-5" />
                 </Link>
-              </GlassCard>
-            </RevealOnScroll>
+              </RevealOnScroll>
+            </div>
           ))}
         </div>
       </div>
@@ -167,45 +195,66 @@ export function LegacyVerification() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <RevealOnScroll direction="left" className="order-2 lg:order-1">
-            <h2 className="text-4xl md:text-6xl font-display text-ivory mb-8 leading-tight">
+            <h2 className="text-4xl md:text-7xl font-display text-ivory mb-8 leading-tight uppercase font-bold tracking-tighter">
               Evidence of <br />
-              <span className="text-gold italic">Integrity.</span>
+              <span className="text-gold italic font-light tracking-normal">Integrity.</span>
             </h2>
-            <div className="space-y-6 text-ivory/50 text-lg leading-relaxed font-light">
+            <div className="space-y-8 text-ivory/50 text-xl leading-relaxed font-light">
               <p>
-                At Sashwin, truth is encoded into every blueprint. We don&apos;t rely on promises; we rely on the physics of engineering and the precision of ISO documentation.
+                At Sashwin, truth is encoded into every blueprint. We don&apos;t rely on marketing promises; we rely on the physics of engineering and the absolute precision of ISO documentation.
               </p>
               <p>
-                From foundational soil testing to high-altitude structural verification, every Sashwin project is a documented truth. Efficiency of design is not just a metric—it is our faith.
+                From foundational soil-bearing capacity certificates to high-altitude structural wind-load verification, every Sashwin project is a documented scientific fact. Technical efficiency is our core theology.
               </p>
-              <div className="pt-8 grid grid-cols-2 gap-10">
-                <div>
-                   <p className="text-ivory font-bold text-lg mb-1">ISO 9001:2015</p>
-                   <p className="text-[10px] uppercase tracking-widest text-gold font-bold">Verified Standards</p>
+              
+              <div className="pt-10 grid grid-cols-1 sm:grid-cols-2 gap-12 border-t border-gold/10">
+                <div className="space-y-4">
+                   <div className="flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 bg-gold" />
+                      <p className="text-ivory font-bold text-lg uppercase tracking-widest">ISO 9001:2015</p>
+                   </div>
+                   <p className="text-[10px] uppercase tracking-[0.4em] text-gold-BRIGHT font-bold">Standardized Excellence</p>
+                   <p className="text-xs text-ivory/30 leading-loose">Rigorous quality management systems verified by international certification bodies for every build phase.</p>
                 </div>
-                <div>
-                   <p className="text-ivory font-bold text-lg mb-1">50-Year Faith</p>
-                   <p className="text-[10px] uppercase tracking-widest text-gold font-bold">Structural Longevity</p>
+                <div className="space-y-4">
+                   <div className="flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 bg-gold" />
+                      <p className="text-ivory font-bold text-lg uppercase tracking-widest">50-Year Faith</p>
+                   </div>
+                   <p className="text-[10px] uppercase tracking-[0.4em] text-gold-BRIGHT font-bold">Structural Longevity</p>
+                   <p className="text-xs text-ivory/30 leading-loose">Engineered with redundancy factors that exceed standard regional requirements for lifetime structural stability.</p>
                 </div>
+              </div>
+
+              <div className="bg-gold/5 p-8 border-l-2 border-gold flex flex-col gap-4">
+                 <p className="text-xs text-gold font-bold uppercase tracking-[0.3em]">Verification Protocol</p>
+                 <div className="flex flex-wrap gap-x-8 gap-y-4">
+                    {["Soil Analysis", "Steel Tensile Test", "Concrete Cubic Strength", "Waterproof Warranty"].map((item, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <div className="w-1 h-1 rounded-full bg-ivory/40" />
+                        <span className="text-[9px] uppercase tracking-widest text-ivory/60">{item}</span>
+                      </div>
+                    ))}
+                 </div>
               </div>
             </div>
           </RevealOnScroll>
 
           <RevealOnScroll direction="right" className="order-1 lg:order-2">
-            <div className="relative aspect-square md:aspect-video lg:aspect-square group">
-              <div className="absolute inset-x-[-20px] inset-y-[-20px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
-              <div className="relative h-full w-full overflow-hidden border border-gold/10">
+            <div className="relative aspect-square group">
+              <div className="absolute inset-x-[-30px] inset-y-[-30px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
+              <div className="relative h-full w-full overflow-hidden border border-gold/10 hover:border-gold/30 transition-colors duration-700">
                 <Image
                   src="/architectural_truth_blueprint_1775898105271.png"
                   alt="Architectural Verification"
                   fill
                   className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-void via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-r from-void via-transparent to-transparent opacity-60" />
               </div>
-              <div className="absolute -bottom-10 -left-10 bg-gold/10 backdrop-blur-3xl border border-gold/20 p-8 hidden md:block">
-                 <p className="text-gold font-display text-3xl mb-1 italic">&quot;Truth in every line.&quot;</p>
-                 <p className="text-ivory/40 text-[9px] uppercase tracking-[0.4em]">Engineered for Legacy</p>
+              <div className="absolute -bottom-10 -left-10 bg-void/90 backdrop-blur-3xl border border-gold/20 p-10 hidden xl:block shadow-2xl">
+                 <p className="text-gold font-display text-4xl mb-2 italic tracking-tighter">&quot;Truth in every line.&quot;</p>
+                 <p className="text-ivory/40 text-[10px] uppercase tracking-[0.5em] font-bold">Documented Engineering Legacy</p>
               </div>
             </div>
           </RevealOnScroll>
