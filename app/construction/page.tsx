@@ -142,8 +142,11 @@ export default function ConstructionPage() {
                       </p>
                       <div className="pt-6">
                         <div className="flex items-center gap-4 text-gold text-[10px] uppercase tracking-[0.5em] font-bold">
-                           <ShieldCheck className="w-5 h-5 flex-shrink-0" /> Verified Standard
+                           <ShieldCheck className="w-5 h-5 flex-shrink-0" /> Architectural Design-Build Oversight
                         </div>
+                        <p className="text-ivory/30 text-xs mt-4 italic">
+                          Our lead architects provide active field-level verification to ensure the structural shell maintains absolute fidelity to the original design vision.
+                        </p>
                       </div>
                    </RevealOnScroll>
                 </div>

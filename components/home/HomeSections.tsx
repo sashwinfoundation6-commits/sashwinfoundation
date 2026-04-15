@@ -92,34 +92,34 @@ export function StatsCounter() {
 // --- CinematicServices ---
 const serviceDetails = [
   {
-    title: "Signature Architecture",
-    description: "Engineering truth into physical form. We curate spaces that resonate with subconscious power and light-path optimization.",
-    longDescription: "Our architectural process begins with a solar-path audit and psychological mapping. We don't just design buildings; we architect legacies that grow in value through efficient structural honesty.",
+    title: "Integrated Architecture",
+    description: "Engineering structural honesty into physical form. We curate spaces that leverage solar-thermal optimization and psychological light-mapping.",
+    longDescription: "Our architectural process is a scientific fusion of geological data and visionary design. We don't just draft blueprints; we architect high-performance environments that prioritize natural light-path optimization and inter-generational structural yield.",
     icon: Gem,
     link: "/mishti",
     tag: "Asset Class",
     image: "/images/hero-bg.jpg",
-    specs: ["Solar-Path Alignment", "Psychological Flow Mapping", "LEED-Ready Blueprinting"]
+    specs: ["Solar-Thermal Optimization", "Psychological Flow Analysis", "BIM-Integrated Blueprinting"]
   },
   {
-    title: "Structural Integrity",
-    description: "Premium villas and residences built with absolute technical transparency and ISO precision standards.",
-    longDescription: "Every gram of steel and every cubic meter of concrete is documented. We utilize M25 grade standards as a minimum, ensuring that your foundation is as strong as your generational faith.",
+    title: "Structural Engineering",
+    description: "Premium residential assets built with absolute technical transparency and Director-level architectural oversight.",
+    longDescription: "Construction is the physical manifestation of architectural truth. We maintain a zero-dilution policy, where every M25 grade pour and Fe550D rebar placement is verified against the original design intent for 50-year structural faith.",
     icon: Building2,
     link: "/construction",
-    tag: "₹2,650/sq.ft",
+    tag: "ISO Certified",
     image: "/images/construction-bg.jpg",
-    specs: ["M25+ Grade Concrete", "Verified Steel Sourcing", "ISO 9001:2015 Documentation"]
+    specs: ["M25+ Foundation Integrity", "Verified Material Provenance", "Live Technical Auditing"]
   },
   {
     title: "Bespoke Interiors",
-    description: "Aesthetic efficiency. Every line is verified for psychological resonance and structural longevity.",
-    longDescription: "Interior design is the final layer of truth. We use material transparency—from Grade-A teak to low-VOC finishes—to ensure your living environment is both healthy and high-yield.",
+    description: "Aesthetic efficiency and sensory curation. Every interior line is a functional extension of the architectural shell.",
+    longDescription: "Interior design is the sensory layer of architecture. We curate 'Luxury for Living' through material resonance—utilizing Grade-A natural elements and ergonomic fluidity to turn structural spaces into high-yield lifestyle assets.",
     icon: Paintbrush,
     link: "/interiors",
-    tag: "Standard of Truth",
+    tag: "Sensory Design",
     image: "/images/gallery-1.jpg",
-    specs: ["Human-Centric Ergonomics", "Eco-Certified Materials", "Smart-Acoustic Engineering"]
+    specs: ["Atmospheric Ergonomics", "Eco-Certified Finishings", "Acoustic Material Science"]
   }
 ];
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";

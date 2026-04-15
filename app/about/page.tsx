@@ -49,9 +49,9 @@ export default function AboutPage() {
 
             <RevealOnScroll direction="right" className="space-y-12">
                <div>
-                  <h2 className="text-3xl md:text-5xl font-display text-ivory mb-6">Our DNA</h2>
+                  <h2 className="text-3xl md:text-5xl font-display text-ivory mb-6">The Sashwin Methodology</h2>
                   <p className="text-ivory-muted text-lg leading-relaxed">
-                    Founded by visionary engineers with a passion for South Indian architecture, Sashwin Foundation has grown from a boutique construction firm to a diversified leader in luxury real estate and investment.
+                    Founded by visionary engineers and architects, Sashwin Foundation operates on the principle of **Integrated Structural Truth**. We don&apos;t believe in silos; our process synchronizes master-planning with interior curation from the very first soil-test.
                   </p>
                </div>
 
@@ -59,19 +59,19 @@ export default function AboutPage() {
                   <div className="space-y-4">
                      <div className="flex items-center gap-3 text-gold">
                         <Target className="w-5 h-5" />
-                        <h4 className="font-semibold uppercase tracking-widest text-sm text-ivory">Mission</h4>
+                        <h4 className="font-semibold uppercase tracking-widest text-sm text-ivory">Design Philosophy</h4>
                      </div>
                      <p className="text-ivory-muted text-sm leading-relaxed">
-                        To build lifelong assets for our clients through engineering precision and transparent practices.
+                        Architecture as the container of life. Our designs prioritize thermal mass efficiency and atmospheric well-being through scientific light-mapping.
                      </p>
                   </div>
                   <div className="space-y-4">
                      <div className="flex items-center gap-3 text-gold">
                         <Users className="w-5 h-5" />
-                        <h4 className="font-semibold uppercase tracking-widest text-sm text-ivory">Values</h4>
+                        <h4 className="font-semibold uppercase tracking-widest text-sm text-ivory">Director Oversight</h4>
                      </div>
                      <p className="text-ivory-muted text-sm leading-relaxed">
-                        Integrity, Innovation, and Inter-generational focus. We build for the future.
+                        Every project features direct oversight by our lead architects to ensure zero &apos;dilution of intent&apos; between the blueprint and the final interior finish.
                      </p>
                   </div>
                </div>
@@ -134,7 +134,7 @@ export default function AboutPage() {
                     <ul className="space-y-6">
                        {[
                          { title: "M25+ Grade Concrete", detail: "Standardized across all residential builds as a minimum threshold." },
-                         { title: "Direct Labour Model", detail: "Ensuring 100% oversight and eliminating the 'dilution of truth' in subcontracting." },
+                         { title: "Direct Labour Model", detail: "Ensuring 100% oversight and eliminating the &apos;dilution of truth&apos; in subcontracting." },
                          { title: "Material Traceability", detail: "Client portals providing live logs of brand, grade, and delivery status." },
                          { title: "Foundation Redundancy", detail: "Structural safety factors 1.5x above standard code for inter-generational peace." }
                        ].map((item, i) => (

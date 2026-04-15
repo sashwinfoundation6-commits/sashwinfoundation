@@ -98,19 +98,64 @@ export default function InteriorsPage() {
         </div>
       </section>
 
+      {/* The Science of Living SECTION */}
+      <section className="py-40 bg-void relative overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-gold/5 rounded-full blur-[150px] pointer-events-none" />
+        <div className="container mx-auto px-6">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+              <RevealOnScroll direction="left" className="space-y-12">
+                 <div className="space-y-6">
+                    <p className="text-gold font-black text-[10px] tracking-[0.5em] uppercase">Atmospheric Engineering</p>
+                    <h2 className="text-5xl md:text-7xl font-display text-ivory leading-[0.9] tracking-tighter uppercase">
+                      The Science of <br />
+                      <span className="text-gold italic font-light tracking-normal lowercase">Living.</span>
+                    </h2>
+                 </div>
+                 <div className="space-y-8 text-ivory/50 text-xl font-light leading-relaxed">
+                    <p>
+                      We treat the interior environment as a high-performance system. Every material is selected for its tactile frequency and health-metric certification. From the thermal conductivity of Italian marble to the psychological impact of 2700K lighting, we engineer comfort.
+                    </p>
+                    <div className="grid grid-cols-2 gap-8 pt-6">
+                       <div className="space-y-2">
+                          <p className="text-ivory font-bold text-sm uppercase tracking-widest">Acoustic Clarity</p>
+                          <p className="text-xs italic leading-relaxed">Integrated sound-dampening technology for serene sanctuary-living.</p>
+                       </div>
+                       <div className="space-y-2">
+                          <p className="text-ivory font-bold text-sm uppercase tracking-widest">Biophilic Flux</p>
+                          <p className="text-xs italic leading-relaxed">Seamless airflow and natural scent-path engineering.</p>
+                       </div>
+                    </div>
+                 </div>
+              </RevealOnScroll>
+
+              <RevealOnScroll direction="right">
+                 <div className="relative aspect-[4/5] lg:aspect-square overflow-hidden border border-gold/10 group">
+                    <Image 
+                      src="/images/gallery-2.jpg" 
+                      alt="Interior Detail" 
+                      fill 
+                      className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-80" />
+                 </div>
+              </RevealOnScroll>
+           </div>
+        </div>
+      </section>
+
       {/* Process Section */}
       <section className="py-32 bg-obsidian relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
         <div className="container mx-auto px-6 relative z-10">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <RevealOnScroll direction="left" className="order-2 lg:order-1">
-                 <h2 className="text-4xl md:text-5xl font-display text-ivory mb-8">Concept to Completion</h2>
+                 <h2 className="text-4xl md:text-5xl font-display text-ivory mb-8">Integrated Execution</h2>
                  <div className="space-y-8">
                     {[
-                      { t: "Moodboarding", d: "Translating your personality into visual styles." },
-                      { t: "3D Visualisation", d: "High-fidelity renders before the first nail is hit." },
-                      { t: "Sourcing", d: "International material sourcing with Indian craftsmanship." },
-                      { t: "Final Styling", d: "The finishing touches that turn a house into a home." }
+                      { t: "Psychological Mapping", d: "Documenting how you move, think, and breathe within a space before drafting." },
+                      { t: "BIM Visualization", d: "High-fidelity structural renders that sync with our architectural blueprints." },
+                      { t: "Material Provenance", d: "Sourcing verified stones and textiles from our audited global supply chain." },
+                      { t: "Tactile Refinement", d: "The final engineering of touch — from hand-stitched leather to machined brass." }
                     ].map((step, i) => (
                       <div key={i} className="flex gap-6 group">
                          <div className="font-impact text-3xl text-gold/30 group-hover:text-gold transition-colors">{i+1}</div>
