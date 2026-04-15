@@ -52,9 +52,13 @@ export default function Navbar() {
       <div className="container mx-auto px-6 h-full flex items-center justify-between relative z-10">
         {/* Logo */}
         <Link href="/" className="flex flex-col group py-2">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="relative h-10 lg:h-14 flex items-center group-hover:scale-105 transition-transform duration-500">
                <BrandLogo className="h-full" />
+            </div>
+            <div className="flex flex-col">
+               <span className="text-ivory font-display text-lg lg:text-xl font-black tracking-tighter leading-none">SASHWIN</span>
+               <span className="text-terra font-display text-[8px] lg:text-[10px] font-bold tracking-[0.3em] leading-none mt-1">FOUNDATION</span>
             </div>
           </div>
         </Link>
@@ -120,6 +124,23 @@ export default function Navbar() {
             transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
             className="fixed inset-0 bg-void/98 backdrop-blur-3xl z-[115] flex flex-col pt-32 px-12 lg:hidden"
           >
+             {/* Close Button Inside Menu */}
+             <button 
+               onClick={() => setIsOpen(false)}
+               className="absolute top-8 right-12 text-gold p-2 hover:scale-110 transition-transform"
+             >
+                <motion.div
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
+                     <line x1="18" y1="6" x2="6" y2="18"></line>
+                     <line x1="6" y1="6" x2="18" y2="18"></line>
+                   </svg>
+                </motion.div>
+             </button>
+
              {/* Background Text Accent */}
              <div className="absolute top-20 right-10 text-[15vw] font-display text-white/[0.02] uppercase pointer-events-none select-none">
                Sashwin
