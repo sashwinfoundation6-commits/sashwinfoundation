@@ -111,7 +111,7 @@ export default function HeroSection() {
   const headingWords = ["Engineer", "Legacies."];
 
   return (
-    <section ref={containerRef} className="relative min-h-[110vh] w-full overflow-hidden flex flex-col items-center bg-void">
+    <section ref={containerRef} className="relative min-h-screen lg:min-h-[110vh] w-full overflow-hidden flex flex-col items-center justify-center bg-void">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-hero opacity-90" />
@@ -135,7 +135,7 @@ export default function HeroSection() {
       <div ref={particleContainerRef} className="absolute inset-0 z-10 pointer-events-none" />
 
       {/* Content */}
-      <div className="container mx-auto px-6 relative z-20 text-center flex flex-col items-center pt-48 lg:pt-60 pb-32">
+      <div className="container mx-auto px-6 relative z-20 text-center flex flex-col items-center py-20">
         <motion.div 
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
