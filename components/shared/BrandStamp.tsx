@@ -14,15 +14,15 @@ interface BrandStampProps {
 
 export default function BrandStamp({ className, size = "md" }: BrandStampProps) {
   const sizeClasses = {
-    sm: "w-10 h-10",
-    md: "w-14 h-14",
-    lg: "w-20 h-20",
-    xl: "w-32 h-32"
+    sm: "w-20 h-10",
+    md: "w-28 h-12",
+    lg: "w-40 h-16",
+    xl: "w-60 h-24"
   };
 
   return (
     <div className={cn(
-      "relative rounded-full bg-white border border-gold/20 flex items-center justify-center p-2 shadow-2xl overflow-hidden group",
+      "relative rounded-full bg-white border border-gold/20 flex items-center justify-center p-3 shadow-2xl overflow-hidden group",
       sizeClasses[size],
       className
     )}>
@@ -34,7 +34,7 @@ export default function BrandStamp({ className, size = "md" }: BrandStampProps) 
           src="/brand-logo.png"
           alt="Sashwin Foundation Logo"
           fill
-          className="object-contain p-1"
+          className="object-contain"
           priority
         />
       </div>

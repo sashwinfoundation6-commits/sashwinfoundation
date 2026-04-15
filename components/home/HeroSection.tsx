@@ -128,7 +128,7 @@ export default function HeroSection() {
       <div ref={particleContainerRef} className="absolute inset-0 z-10 pointer-events-none" />
 
       {/* Content */}
-      <div className="container mx-auto px-6 relative z-20 text-center flex flex-col items-center">
+      <div className="container mx-auto px-6 relative z-20 text-center flex flex-col items-center pt-32 md:pt-40">
         <div className="overflow-hidden mb-6">
           <p className="text-gold-BRIGHT text-xs md:text-sm uppercase tracking-[0.5em] animate-fade-up">
             COIMBATORE × CHENNAI

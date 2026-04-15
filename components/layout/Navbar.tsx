@@ -53,20 +53,20 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex flex-col group py-2">
           <div className="flex items-center gap-4">
-            <div className="relative w-12 h-12 lg:w-16 lg:h-16 group-hover:scale-105 transition-transform duration-500">
+            <div className="relative w-32 h-12 lg:w-48 lg:h-16 group-hover:scale-105 transition-transform duration-500">
                <Image
                  src="/brand-logo.png"
                  alt="Sashwin Foundation"
                  fill
-                 className="object-contain"
+                 className="object-contain object-left"
                  priority
                />
             </div>
-            <div className="flex flex-col">
-              <span className="font-display text-xl lg:text-3xl font-bold tracking-tight text-ivory leading-none">
+            <div className="flex flex-col border-l border-gold/20 pl-4">
+              <span className="font-display text-lg lg:text-2xl font-bold tracking-[0.1em] text-ivory leading-none">
                 SASHWIN
               </span>
-              <span className="text-[9px] lg:text-[10px] uppercase tracking-[0.4em] text-gold-BRIGHT font-bold mt-1">
+              <span className="text-[8px] lg:text-[9px] uppercase tracking-[0.3em] text-gold-BRIGHT font-bold mt-1 whitespace-nowrap">
                 Architecture & Interior
               </span>
             </div>
