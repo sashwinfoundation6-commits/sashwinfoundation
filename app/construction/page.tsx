@@ -3,36 +3,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { HardHat, Ruler, Building, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import GlassCard from "@/components/shared/GlassCard";
 import { COMPANY_DATA } from "@/lib/constants";
 
-// --- FeatureList ---
-const features = [
-  {
-    title: "In-house Architects & Engineers",
-    description: "Our core team handles every blueprint and calculation. No outsourcing means perfect execution.",
-    icon: () => <HardHat className="w-6 h-6" />
-  },
-  {
-    title: "Direct Labour Force",
-    description: "We eliminate mediator margins by managing our own labour force, passing the savings to you.",
-    icon: () => <Building className="w-6 h-6" />
-  },
-  {
-    title: "ISO Standards Compliance",
-    description: "Strict adherence to international quality benchmarks for every cubic foot constructed.",
-    icon: () => <ShieldCheck className="w-6 h-6" />
-  },
-  {
-    title: "Material Transparency",
-    description: "Client visibility on every purchase. Real-time auditing of material quality and cost.",
-    icon: () => <Ruler className="w-6 h-6" />
-  }
-];
 
 // --- ConstructionPage ---
 export default function ConstructionPage() {
@@ -41,26 +18,41 @@ export default function ConstructionPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/construction-bg.jpg"
+            src="/public/construction-bg.jpg"
             alt="Luxury Construction"
             fill
-            className="object-cover opacity-40 scale-105"
+            className="object-cover opacity-30 scale-105"
+            priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-void/80 via-void/40 to-void" />
+          <div className="absolute inset-0 bg-gradient-to-b from-void/90 via-void/40 to-void" />
         </div>
         
         <div className="container mx-auto px-6 relative z-10 text-center">
           <RevealOnScroll>
-            <span className="text-gold tracking-[0.4em] text-xs uppercase mb-4 block">Our Expertise</span>
-            <h1 className="text-5xl md:text-7xl font-display text-ivory mb-6">
-              Engineering <span className="text-gold italic">Legacy.</span>
+            <span className="text-gold tracking-[0.8em] text-[10px] uppercase mb-8 block font-black animate-fade-up">Standard of Integrity</span>
+            <h1 className="text-7xl md:text-[10rem] font-display text-ivory mb-10 tracking-tighter uppercase leading-none animate-reveal">
+              Engineering <br />
+              <span className="text-gold italic font-light tracking-normal lowercase">Legacy.</span>
             </h1>
-            <p className="text-ivory-muted max-w-2xl mx-auto text-lg">
-              25 years of proven delivery in Coimbatore & Chennai. We don&apos;t just build structures; we craft enduring assets.
-            </p>
+            <div className="max-w-2xl mx-auto space-y-8 animate-fade-up [animation-delay:0.4s]">
+              <p className="text-ivory/60 text-xl font-light leading-relaxed">
+                25 years of proven delivery across India. We don&apos;t just build structures; we architect inter-generational truth through verified engineering.
+              </p>
+              <div className="flex justify-center gap-12 pt-8">
+                <div>
+                   <p className="text-gold font-display text-4xl mb-1 tracking-tighter">500+</p>
+                   <p className="text-[10px] text-ivory/30 uppercase tracking-widest font-bold">Projects Built</p>
+                </div>
+                <div className="w-px h-12 bg-gold/20" />
+                <div>
+                   <p className="text-gold font-display text-4xl mb-1 tracking-tighter">ISO</p>
+                   <p className="text-[10px] text-ivory/30 uppercase tracking-widest font-bold">Standardized</p>
+                </div>
+              </div>
+            </div>
           </RevealOnScroll>
         </div>
       </section>
@@ -93,61 +85,131 @@ export default function ConstructionPage() {
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-24 bg-void">
+      {/* Cinematic Features Breakdown */}
+      <section className="py-40 bg-void">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, i) => (
-              <RevealOnScroll key={i} delay={i * 100}>
-                <GlassCard className="h-full group border-gold/5 hover:border-gold/20 rounded-none">
-                  <div className="w-14 h-14 rounded-none border border-gold/20 bg-void flex items-center justify-center text-gold mb-8 group-hover:bg-gold group-hover:text-void transition-all duration-700">
-                    <span className="h-6 w-6">
-                      {i === 0 && <HardHat className="w-6 h-6" />}
-                      {i === 1 && <Building className="w-6 h-6" />}
-                      {i === 2 && <ShieldCheck className="w-6 h-6" />}
-                      {i === 3 && <Ruler className="w-6 h-6" />}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-display text-ivory mb-4 tracking-tight">{feature.title}</h3>
-                  <p className="text-ivory/60 text-sm leading-relaxed font-light">
-                    {feature.description}
-                  </p>
-                </GlassCard>
-              </RevealOnScroll>
-            ))}
-          </div>
+           <RevealOnScroll className="mb-32">
+              <h2 className="text-4xl md:text-7xl font-display text-ivory mb-8 leading-tight uppercase font-bold tracking-tighter">
+                 The Construction <br />
+                 <span className="text-gold italic font-light tracking-normal lowercase">Principles.</span>
+              </h2>
+           </RevealOnScroll>
+
+           <div className="space-y-40">
+              {[
+                {
+                  title: "Direct Labour Force",
+                  desc: "We manage our own specialized workforce, eliminating third-party dilution of quality and ensuring 100% oversight at every square inch.",
+                  technical: "ISO-Certified Workforce Management",
+                  img: "/construction_foundation.png",
+                  reversed: false
+                },
+                {
+                  title: "Material Transparency",
+                  desc: "Real-time auditing of materials—from M25 concrete cubic strength logs to verified steel tensile reports—available directly to the client.",
+                  technical: "Tier-1 Sourcing Only (JSW/Tata/UltraTech)",
+                  img: "/construction_superstructure.png",
+                  reversed: true
+                },
+                {
+                  title: "Integrated Engineering",
+                  desc: "Every build includes in-house Architectural and Interior Engineering, ensuring that structural integrity and aesthetic vision are never decoupled.",
+                  technical: "BIM Integrated Execution",
+                  img: "/construction_finished.png",
+                  reversed: false
+                }
+              ].map((item, i) => (
+                <div key={i} className={`flex flex-col ${item.reversed ? "lg:flex-row-reverse" : "lg:flex-row"} gap-16 lg:gap-32 items-center`}>
+                   <RevealOnScroll direction={item.reversed ? "right" : "left"} className="w-full lg:w-1/2">
+                      <div className="relative aspect-[16/10] group overflow-hidden border border-gold/10">
+                        <Image
+                          src={item.img}
+                          alt={item.title}
+                          fill
+                          className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-60" />
+                      </div>
+                   </RevealOnScroll>
+
+                   <RevealOnScroll direction={item.reversed ? "left" : "right"} className="w-full lg:w-1/2 space-y-8">
+                      <p className="text-gold text-[10px] uppercase tracking-[0.5em] font-black">{item.technical}</p>
+                      <h3 className="text-4xl md:text-5xl font-display text-ivory uppercase tracking-tighter">{item.title}</h3>
+                      <p className="text-ivory/50 text-xl leading-relaxed font-light">
+                        {item.desc}
+                      </p>
+                      <div className="pt-6">
+                        <div className="flex items-center gap-4 text-gold text-[10px] uppercase tracking-[0.5em] font-bold">
+                           <ShieldCheck className="w-5 h-5 flex-shrink-0" /> Verified Standard
+                        </div>
+                      </div>
+                   </RevealOnScroll>
+                </div>
+              ))}
+           </div>
         </div>
       </section>
 
-      {/* Process Lifecycle */}
-      <section className="py-32 bg-obsidian relative">
-        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-void to-transparent" />
-        <div className="container mx-auto px-6 relative z-10">
-          <RevealOnScroll className="text-center mb-24">
-            <span className="text-gold tracking-[0.4em] text-[10px] uppercase mb-4 block font-bold">The Truth Method</span>
-            <h2 className="text-4xl md:text-7xl font-display text-ivory tracking-tighter uppercase">The Architectural Lifecycle</h2>
+      {/* Specifications of Truth Section */}
+      <section className="py-24 bg-carbon">
+         <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto glass-card border-gold/10 p-12 lg:p-20">
+               <RevealOnScroll>
+                  <h3 className="text-3xl font-display text-ivory mb-12 text-center uppercase tracking-widest">Specifications of Truth</h3>
+                  <div className="space-y-4">
+                     {[
+                       { label: "Concrete Grade", value: "M25 / M30 (Verified Strength)" },
+                       { label: "Steel Standard", value: "Fe550D TMT (Secondary Sourcing Prohibited)" },
+                       { label: "Brickwork", value: "High-Density Solid Blocks / First-Grade Red Bricks" },
+                       { label: "Waterproofing", value: "Dr. Fixit 2K Polymer Integrated System" },
+                       { label: "Plumbing", value: "Ashirvad CPVC / Supreme Silent SWR" },
+                       { label: "Electrical", value: "Finolex FRLS / Legrand Digital Ready" }
+                     ].map((spec, i) => (
+                       <div key={i} className="flex justify-between items-center py-4 border-b border-gold/5 group hover:bg-gold/5 px-4 transition-all">
+                          <span className="text-gold text-[10px] uppercase tracking-widest font-bold">{spec.label}</span>
+                          <span className="text-ivory text-sm font-light italic">{spec.value}</span>
+                       </div>
+                     ))}
+                  </div>
+               </RevealOnScroll>
+            </div>
+         </div>
+      </section>
+
+      {/* Advanced Lifecycle Process */}
+      <section className="py-40 bg-void relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+        
+        <div className="container mx-auto px-6">
+          <RevealOnScroll className="text-center mb-32">
+            <span className="text-gold tracking-[0.6em] text-[10px] uppercase mb-6 block font-black">The Architectural Pulse</span>
+            <h2 className="text-5xl md:text-[7rem] font-display text-ivory tracking-tighter uppercase leading-none">The Lifecycle of Truth</h2>
           </RevealOnScroll>
 
-          <div className="relative">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
-              {[
-                { step: "01", title: "Fact Finding", desc: "Technical feasibility and geological truth mapping." },
-                { step: "02", title: "Engineering Blueprint", desc: "Scientific 3D visualizations and structural verification." },
-                { step: "03", title: "Atomic Build", desc: "Executing with high-fidelity ISO-standard quality audits." },
-                { step: "04", title: "Legacy Yield", desc: "Your dream asset, verified for generational endurance." }
-              ].map((item, i) => (
-                <RevealOnScroll key={i} delay={i * 200} direction="up">
-                  <div className="text-left group relative">
-                    <div className="text-[120px] font-display text-white/[0.03] absolute -top-20 -left-10 pointer-events-none select-none">
-                      {item.step}
-                    </div>
-                    <div className="w-12 h-px bg-gold mb-6 group-hover:w-24 transition-all duration-700" />
-                    <h4 className="text-2xl font-display text-ivory mb-4 tracking-tight">{item.title}</h4>
-                    <p className="text-ivory-muted text-sm leading-relaxed font-light">{item.desc}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-16">
+            {[
+              { step: "01", title: "Fact Finding", desc: "Geological soil analysis and site topography verification. Ensuring the foundation of truth." },
+              { step: "02", title: "Engineering Blueprint", desc: "3D structural modeling with CAD-precision. Light-path and thermal efficiency audits." },
+              { step: "03", title: "Procurement Clarity", desc: "Material transparency logs. Real-time brand verification and stock auditing." },
+              { step: "04", title: "Superstructure Pulse", desc: "Executing shell with ISO quality gates. Monthly technical audits by a Director-level engineer." },
+              { step: "05", title: "Integrated Polish", desc: "Interior design and MEP integration. Aesthetic resonance meets functional plumbing truth." },
+              { step: "06", title: "Legacy Yield", desc: "Verification Handover. Documented 50-year structural engineering faith achieved." }
+            ].map((item, i) => (
+              <RevealOnScroll key={i} delay={i * 100} direction="up">
+                <div className="group relative">
+                  <div className="text-[140px] font-display text-white/[0.04] absolute -top-24 -left-10 pointer-events-none select-none group-hover:text-gold/5 transition-colors duration-1000">
+                    {item.step}
                   </div>
-                </RevealOnScroll>
-              ))}
-            </div>
+                  <div className="space-y-6 relative z-10">
+                    <div className="w-20 h-px bg-gold/30 group-hover:w-full transition-all duration-1000" />
+                    <h4 className="text-3xl font-display text-ivory tracking-tighter uppercase group-hover:text-gold transition-colors">{item.title}</h4>
+                    <p className="text-ivory/40 text-lg leading-relaxed font-light italic">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            ))}
           </div>
         </div>
       </section>
