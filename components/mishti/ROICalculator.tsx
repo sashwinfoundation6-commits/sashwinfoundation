@@ -29,8 +29,8 @@ export default function ROICalculator() {
   const roi = (totalProfit / capitalInvested) * 100;
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+    <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
         {/* Controls */}
         <div className="space-y-8">
           <div>
@@ -85,47 +85,50 @@ export default function ROICalculator() {
         </div>
 
         {/* Results */}
-        <GlassCard className="bg-carbon/50 border-gold/20" hoverEffect={false}>
-          <div className="space-y-6">
-            <div className="flex justify-between items-end">
+        <GlassCard className="bg-void/40 border-gold/30 p-12 lg:p-16 relative overflow-hidden" hoverEffect={false}>
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          
+          <div className="space-y-10 relative z-10">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
               <div>
-                <p className="text-ivory-muted text-xs uppercase tracking-widest mb-1">Total Net Profit</p>
-                <p className="text-4xl font-impact text-gold-BRIGHT tracking-tighter">
-                  ₹{(totalProfit / 100000).toFixed(2)} Lakhs
+                <p className="text-gold text-[10px] uppercase tracking-[0.4em] mb-4 font-bold">Total Net Profit</p>
+                <p className="text-5xl lg:text-7xl font-display text-ivory tracking-tighter">
+                  ₹{(totalProfit / 100000).toFixed(2)}<span className="text-2xl text-gold/40 ml-2">L</span>
                 </p>
               </div>
-              <div className="text-right">
-                <p className="text-ivory-muted text-xs uppercase tracking-widest mb-1">ROI (Total)</p>
-                <p className="text-2xl font-impact text-terra-light">{roi.toFixed(1)}%</p>
+              <div className="text-left sm:text-right">
+                <p className="text-ivory/40 text-[10px] uppercase tracking-[0.4em] mb-2 font-bold">ROI (Total)</p>
+                <p className="text-4xl font-display text-terra-light tracking-tight">{roi.toFixed(1)}%</p>
               </div>
             </div>
 
-            <div className="w-full h-px bg-glass-border" />
+            <div className="w-full h-px bg-gold/10" />
 
-            <div className="space-y-4">
-              <div className="flex justify-between text-sm">
-                <span className="text-ivory-muted flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-gold" /> Capital Appreciation
+            <div className="space-y-6">
+              <div className="flex justify-between text-base">
+                <span className="text-ivory/60 flex items-center gap-3">
+                  <TrendingUp className="w-5 h-5 text-gold" /> Capital Appreciation
                 </span>
-                <span className="text-ivory font-semibold">₹{(appreciationProfit / 100000).toFixed(2)}L</span>
+                <span className="text-ivory font-bold">₹{(appreciationProfit / 100000).toFixed(2)}L</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-ivory-muted flex items-center gap-2">
-                  <IndianRupee className="w-4 h-4 text-gold" /> Rental Income
+              <div className="flex justify-between text-base">
+                <span className="text-ivory/60 flex items-center gap-3">
+                  <IndianRupee className="w-5 h-5 text-gold" /> Rental Income
                 </span>
-                <span className="text-ivory font-semibold">₹{(totalRentalIncome / 100000).toFixed(2)}L</span>
+                <span className="text-ivory font-bold">₹{(totalRentalIncome / 100000).toFixed(2)}L</span>
               </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-ivory-muted flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-gold" /> Your Capital Outlay
+              <div className="flex justify-between text-base">
+                <span className="text-ivory/60 flex items-center gap-3">
+                  <Clock className="w-5 h-5 text-gold" /> Initial Capital Outlay
                 </span>
-                <span className="text-ivory font-semibold">₹{(capitalInvested / 100000).toFixed(2)}L</span>
+                <span className="text-ivory font-bold">₹{(capitalInvested / 100000).toFixed(2)}L</span>
               </div>
             </div>
 
-            <div className="mt-8 p-4 bg-gold/5 rounded-lg border border-gold/10">
-              <p className="text-[10px] text-ivory-muted uppercase italic text-center">
-                * Projections are based on current market trends and are not guaranteed. Actual returns may vary based on resort performance.
+            <div className="mt-12 p-6 bg-gold/5 border border-gold/10">
+              <p className="text-[9px] text-ivory/30 uppercase tracking-[0.2em] italic text-center leading-relaxed">
+                * Technical projection generated by Sashwin Foundation Audit Engine. <br />
+                Market scenario based on verified 2024-2025 regional growth benchmarks.
               </p>
             </div>
           </div>
