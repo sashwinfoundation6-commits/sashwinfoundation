@@ -55,9 +55,9 @@ export default function BrandLogo({ className, variant = "light" }: BrandLogoPro
         <Image
           src="/brand-logo-official.png"
           alt="Sashwin Foundation"
-          width={120}
-          height={120}
-          className="object-contain"
+          width={160}
+          height={160}
+          className="object-contain scale-150"
           onError={() => setError(true)}
           priority
         />

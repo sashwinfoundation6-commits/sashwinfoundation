@@ -4,6 +4,8 @@ import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { COMPANY_DATA } from "@/lib/constants";
 
+import BrandLogo from "../shared/BrandLogo";
+
 export default function Footer() {
   return (
     <footer className="bg-void relative overflow-hidden pt-32 pb-16">
@@ -16,14 +18,7 @@ export default function Footer() {
           <div className="space-y-6">
             <Link href="/" className="flex flex-col group">
               <div className="flex items-center gap-4">
-                <div className="relative w-12 h-12 bg-white rounded-full p-2 border border-gold/10">
-                   <Image
-                     src="/brand-logo.png"
-                     alt="Sashwin Foundation"
-                     fill
-                     className="object-contain p-1"
-                   />
-                </div>
+                <BrandLogo className="h-12 w-12" />
                 <span className="font-display text-2xl font-bold tracking-tight text-ivory">
                   SASHWIN FOUNDATION
                 </span>
