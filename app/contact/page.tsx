@@ -13,13 +13,36 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setSubmitted(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      category: formData.get("category"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Transmission failed. Please try again or call us directly.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("A technical error occurred during transmission.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -126,17 +149,17 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
                         <label className="text-[10px] uppercase tracking-[0.4em] font-bold text-gold/60">Full Name</label>
-                        <input required type="text" placeholder="Johnathan Doe" className="w-full bg-transparent border-b border-white/10 focus:border-gold py-4 text-ivory text-sm transition-all outline-none rounded-none" />
+                        <input name="name" required type="text" placeholder="Johnathan Doe" className="w-full bg-transparent border-b border-white/10 focus:border-gold py-4 text-ivory text-sm transition-all outline-none rounded-none" />
                       </div>
                       <div className="space-y-3">
                         <label className="text-[10px] uppercase tracking-[0.4em] font-bold text-gold/60">Phone</label>
-                        <input required type="tel" placeholder="+91 000 000 0000" className="w-full bg-transparent border-b border-white/10 focus:border-gold py-4 text-ivory text-sm transition-all outline-none rounded-none" />
+                        <input name="phone" required type="tel" placeholder="+91 000 000 0000" className="w-full bg-transparent border-b border-white/10 focus:border-gold py-4 text-ivory text-sm transition-all outline-none rounded-none" />
                       </div>
                     </div>
 
                     <div className="space-y-3">
                       <label className="text-[10px] uppercase tracking-[0.4em] font-bold text-gold/60">Vertical of Interest</label>
-                      <select className="w-full bg-transparent border-b border-white/10 focus:border-gold py-4 text-ivory text-sm transition-all outline-none rounded-none appearance-none">
+                      <select name="category" className="w-full bg-transparent border-b border-white/10 focus:border-gold py-4 text-ivory text-sm transition-all outline-none rounded-none appearance-none">
                         <option className="bg-void">Foundational Partnership (Mishti)</option>
                         <option className="bg-void">Truthful Engineering (Construction)</option>
                         <option className="bg-void">Integrated Interiors (Aesthetics)</option>
@@ -147,7 +170,7 @@ export default function ContactPage() {
 
                     <div className="space-y-3">
                       <label className="text-[10px] uppercase tracking-[0.4em] font-bold text-gold/60">Legacy Message</label>
-                      <textarea rows={4} placeholder="Brief your requirements..." className="w-full bg-transparent border-b border-white/10 focus:border-gold py-4 text-ivory text-sm transition-all outline-none resize-none rounded-none"></textarea>
+                      <textarea name="message" rows={4} placeholder="Brief your requirements..." className="w-full bg-transparent border-b border-white/10 focus:border-gold py-4 text-ivory text-sm transition-all outline-none resize-none rounded-none"></textarea>
                     </div>
 
                     <CTAButton
