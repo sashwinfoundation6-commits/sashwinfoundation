@@ -187,7 +187,7 @@ export default function MishtiPage() {
               </div>
             </div>
             <div className="shrink-0 w-full md:w-auto">
-               <CTAButton variant="primary" className="w-full text-xl px-16 py-6 uppercase font-impact tracking-widest">
+               <CTAButton href="/contact" variant="primary" className="w-full text-xl px-16 py-6 uppercase font-impact tracking-widest">
                   Art of Legacy
                </CTAButton>
             </div>

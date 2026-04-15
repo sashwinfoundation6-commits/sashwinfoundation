@@ -122,10 +122,60 @@ const serviceDetails = [
     specs: ["Human-Centric Ergonomics", "Eco-Certified Materials", "Smart-Acoustic Engineering"]
   }
 ];
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+
+function ServiceCard({ service, index, scrollYProgress }: { service: typeof serviceDetails[0], index: number, scrollYProgress: MotionValue<number> }) {
+  const y = useTransform(scrollYProgress, [0, 1], [0, index % 2 === 0 ? -100 : 100]);
+  
+  return (
+    <div 
+      className={`flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center`}
+    >
+      <RevealOnScroll direction={index % 2 === 0 ? "left" : "right"} className="w-full lg:w-1/2">
+        <motion.div style={{ y }} className="relative aspect-[16/10] group overflow-hidden border border-gold/10">
+          <Image
+            src={service.image}
+            alt={service.title}
+            fill
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-60" />
+          <div className="absolute top-6 left-6 inline-block px-4 py-1.5 bg-void/80 backdrop-blur-md border border-gold/20 text-[9px] uppercase tracking-[0.4em] text-gold font-bold">
+            {service.tag}
+          </div>
+        </motion.div>
+      </RevealOnScroll>
+
+      <RevealOnScroll direction={index % 2 === 0 ? "right" : "left"} className="w-full lg:w-1/2 space-y-8">
+        <h3 className="text-4xl md:text-5xl font-display text-ivory tracking-tight">{service.title}</h3>
+        <p className="text-ivory-muted text-lg leading-relaxed font-light">
+          {service.longDescription}
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4">
+          {service.specs.map((spec, j) => (
+            <div key={j} className="flex items-center gap-3">
+              <div className="w-1.5 h-1.5 bg-gold rounded-full" />
+              <span className="text-[10px] uppercase tracking-widest text-gold font-bold">{spec}</span>
+            </div>
+          ))}
+        </div>
+        <Link href={service.link} className="inline-flex items-center gap-4 text-gold text-[10px] uppercase tracking-[0.4em] font-black group/link hover:gap-8 transition-all">
+          LEGACY PORTFOLIO <MoveRight className="w-5 h-5" />
+        </Link>
+      </RevealOnScroll>
+    </div>
+  );
+}
 
 export function ServicesGrid() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
   return (
-    <section className="py-24 bg-obsidian relative overflow-hidden">
+    <section ref={containerRef} className="py-24 bg-obsidian relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="container mx-auto px-6">
@@ -141,43 +191,12 @@ export function ServicesGrid() {
 
         <div className="space-y-32">
           {serviceDetails.map((service, i) => (
-            <div 
+            <ServiceCard 
               key={i} 
-              className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center`}
-            >
-              <RevealOnScroll direction={i % 2 === 0 ? "left" : "right"} className="w-full lg:w-1/2">
-                <div className="relative aspect-[16/10] group overflow-hidden border border-gold/10">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent opacity-60" />
-                  <div className="absolute top-6 left-6 inline-block px-4 py-1.5 bg-void/80 backdrop-blur-md border border-gold/20 text-[9px] uppercase tracking-[0.4em] text-gold font-bold">
-                    {service.tag}
-                  </div>
-                </div>
-              </RevealOnScroll>
-
-              <RevealOnScroll direction={i % 2 === 0 ? "right" : "left"} className="w-full lg:w-1/2 space-y-8">
-                <h3 className="text-4xl md:text-5xl font-display text-ivory tracking-tight">{service.title}</h3>
-                <p className="text-ivory-muted text-lg leading-relaxed font-light">
-                  {service.longDescription}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4">
-                  {service.specs.map((spec, j) => (
-                    <div key={j} className="flex items-center gap-3">
-                      <div className="w-1 h-1 bg-gold rounded-full" />
-                      <span className="text-[10px] uppercase tracking-widest text-gold font-bold">{spec}</span>
-                    </div>
-                  ))}
-                </div>
-                <Link href={service.link} className="inline-flex items-center gap-4 text-gold text-[10px] uppercase tracking-[0.4em] font-black group/link hover:gap-8 transition-all">
-                  LEGACY PORTFOLIO <MoveRight className="w-5 h-5" />
-                </Link>
-              </RevealOnScroll>
-            </div>
+              service={service} 
+              index={i} 
+              scrollYProgress={scrollYProgress} 
+            />
           ))}
         </div>
       </div>
@@ -271,7 +290,7 @@ export function MishtiTeaser() {
                 </li>
               ))}
             </ul>
-            <CTAButton className="w-full md:w-auto px-12 py-5 text-[10px] tracking-widest font-bold">
+            <CTAButton href="/mishti" className="w-full md:w-auto px-12 py-5 text-[10px] tracking-widest font-bold">
               VIEW TECHNICAL PROSPECTUS
             </CTAButton>
           </RevealOnScroll>
@@ -326,9 +345,9 @@ export function GenerationalFaith() {
             &quot;We do not build for the moment. We build for the memories that haven&apos;t happened yet. Architecture is our faith in the future.&quot;
           </p>
           <div className="flex justify-center">
-            <Link href="/contact" className="px-20 py-8 bg-ivory text-void text-xs tracking-[0.6em] font-black uppercase hover:bg-gold transition-colors duration-700">
+            <CTAButton href="/contact" variant="primary" className="px-20 py-8 text-xs tracking-[0.6em] font-black">
               SECURE YOUR LEGACY
-            </Link>
+            </CTAButton>
           </div>
         </RevealOnScroll>
       </div>

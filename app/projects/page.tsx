@@ -111,7 +111,7 @@ export default function ProjectsPage() {
                     </p>
 
                     <div className="pt-4 flex gap-6">
-                      <CTAButton variant="primary" className="px-10 font-bold tracking-widest text-[10px]">
+                      <CTAButton href="/contact" variant="primary" className="px-10 font-bold tracking-widest text-[10px]">
                         VIEW BLUEPRINT
                       </CTAButton>
                       <Link href="/contact" className="flex items-center gap-2 text-ivory hover:text-gold transition-colors text-[10px] tracking-[0.3em] font-bold group/btn">

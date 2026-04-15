@@ -40,6 +40,8 @@ export const metadata: Metadata = {
   },
 };
 
+import PageTransition from "@/components/shared/PageTransition";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,7 +52,9 @@ export default function RootLayout({
       <body
         className={`${cormorantGaramond.variable} ${inter.variable} ${bebasNeue.variable} ${dancingScript.variable} antialiased font-ui text-ivory bg-void overflow-x-hidden`}
       >
-        {children}
+        <PageTransition>
+          {children}
+        </PageTransition>
       </body>
     </html>
   );

@@ -2,11 +2,16 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { COMPANY_DATA } from "@/lib/constants";
 import CTAButton from "@/components/shared/CTAButton";
 
 export default function HeroSection() {
   const particleContainerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const scale = useTransform(scrollY, [0, 500], [1.1, 1.3]);
 
   useEffect(() => {
     // Particle system effect
@@ -103,8 +108,10 @@ export default function HeroSection() {
     };
   }, []);
 
+  const headingWords = ["Engineer", "Legacies."];
+
   return (
-    <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center bg-void pt-48 lg:pt-60">
+    <section ref={containerRef} className="relative min-h-[110vh] w-full overflow-hidden flex flex-col items-center bg-void pt-48 lg:pt-60">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-hero opacity-90" />
@@ -113,59 +120,81 @@ export default function HeroSection() {
       </div>
 
       {/* Background Image with Parallax Mask */}
-      <div className="absolute inset-0 z-0 opacity-40">
+      <motion.div style={{ y: y1, scale }} className="absolute inset-0 z-0 opacity-40">
         <Image
-          src="/images/hero-bg.jpg" // Placeholder path, I'll copy the generated one later
+          src="/images/hero-bg.jpg"
           alt="Luxury Villa"
           fill
-          className="object-cover scale-110"
+          className="object-cover"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-void via-void/40 to-transparent" />
-      </div>
+      </motion.div>
 
       {/* Particle Overlay */}
       <div ref={particleContainerRef} className="absolute inset-0 z-10 pointer-events-none" />
 
       {/* Content */}
       <div className="container mx-auto px-6 relative z-20 text-center flex flex-col items-center pt-32 md:pt-40">
-        <div className="overflow-hidden mb-6">
-          <p className="text-gold-BRIGHT text-xs md:text-sm uppercase tracking-[0.5em] animate-fade-up">
+        <motion.div 
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8 }}
+           className="mb-6"
+        >
+          <p className="text-gold-BRIGHT text-xs md:text-sm uppercase tracking-[0.5em]">
             COIMBATORE × CHENNAI
           </p>
-        </div>
+        </motion.div>
 
         <h1 className="flex flex-col gap-2 mb-10">
-          <span className="overflow-hidden">
-            <span className="block text-[clamp(4rem,10vw,9rem)] font-display text-ivory leading-[0.9] animate-reveal">
-              Engineer
+          {headingWords.map((word, i) => (
+            <span key={i} className="overflow-hidden">
+              <motion.span 
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, delay: 0.2 + i * 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="block text-[clamp(4rem,10vw,9rem)] font-display text-ivory leading-[0.9]"
+              >
+                {word}
+              </motion.span>
             </span>
-          </span>
-          <span className="overflow-hidden">
-            <span className="block text-[clamp(4rem,10vw,9rem)] font-display text-ivory leading-[0.9] animate-reveal [animation-delay:0.2s]">
-              Legacies.
-            </span>
-          </span>
+          ))}
         </h1>
 
-        <div className="overflow-hidden mb-12">
-          <p className="font-script text-[clamp(1.5rem,4vw,3.5rem)] text-gold-gradient animate-fade-up [animation-delay:0.6s]">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.6 }}
+          className="mb-12"
+        >
+          <p className="font-script text-[clamp(1.5rem,4vw,3.5rem)] text-gold-gradient">
             Truth in Architecture.
           </p>
-        </div>
+        </motion.div>
 
-        <p className="text-ivory/60 max-w-2xl text-base md:text-xl font-light mb-12 animate-fade-up [animation-delay:0.8s] leading-relaxed">
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="text-ivory/60 max-w-2xl text-base md:text-xl font-light mb-12 leading-relaxed"
+        >
           Architectural efficiency meets subconscious value. We transform pure engineering into the faith of a lifetime.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col sm:flex-row gap-6 animate-fade-up [animation-delay:1s]">
-          <CTAButton variant="primary" className="text-sm px-12 py-5 group tracking-widest font-bold">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="flex flex-col sm:flex-row gap-6"
+        >
+          <CTAButton href="/mishti" variant="primary" className="text-sm px-12 py-5 group tracking-widest font-bold">
             ART OF LEGACY
           </CTAButton>
-          <CTAButton variant="outline" className="text-sm px-12 py-5 tracking-widest font-bold">
+          <CTAButton href="/projects" variant="outline" className="text-sm px-12 py-5 tracking-widest font-bold">
             CURATED WORKS
           </CTAButton>
-        </div>
+        </motion.div>
       </div>
 
       {/* Bottom Interface */}

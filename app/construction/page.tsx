@@ -2,12 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import GlassCard from "@/components/shared/GlassCard";
+import CTAButton from "@/components/shared/CTAButton";
 import { COMPANY_DATA } from "@/lib/constants";
 
 
@@ -231,12 +231,12 @@ export default function ConstructionPage() {
                 Begin a technical consultation with our engineering truth-seekers. Documented excellence for your lifelong legacy asset.
               </p>
               <div className="flex flex-col sm:flex-row gap-8 justify-center">
-                <Link href="/contact" className="btn-gold px-12 py-5 text-xs tracking-widest font-bold">
+                <CTAButton href="/contact" variant="primary" className="px-12 py-5 text-xs tracking-widest font-bold">
                   REQUEST PROPOSAL
-                </Link>
-                <a href={`tel:${COMPANY_DATA.contact.primary}`} className="btn-gold-outline px-12 py-5 text-xs tracking-widest font-bold">
+                </CTAButton>
+                <CTAButton href={`tel:${COMPANY_DATA.contact.primary}`} variant="outline" className="px-12 py-5 text-xs tracking-widest font-bold">
                   SPEAK WITH A DIRECTOR
-                </a>
+                </CTAButton>
               </div>
             </RevealOnScroll>
           </GlassCard>

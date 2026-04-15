@@ -147,7 +147,7 @@ export default function InteriorsPage() {
                  <p className="text-ivory-muted text-lg mb-10 max-w-xl mx-auto">
                    Explore how our interior services can elevate your project. Book a consultation with our design team today.
                  </p>
-                 <CTAButton className="px-12 py-4">
+                 <CTAButton href="/contact" className="px-12 py-4">
                    Book Design Consultation
                  </CTAButton>
               </RevealOnScroll>
