@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="space-y-6">
             <Link href="/" className="flex flex-col group">
               <div className="flex items-center gap-4">
-                <BrandLogo className="h-12 w-12" />
+                <BrandLogo />
                 <span className="font-display text-2xl font-bold tracking-tight text-ivory">
                   SASHWIN FOUNDATION
                 </span>

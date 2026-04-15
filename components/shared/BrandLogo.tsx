@@ -50,8 +50,8 @@ export default function BrandLogo({ className, variant = "light" }: BrandLogoPro
   if (error) return <FallbackLogo />;
 
   return (
-    <div className={cn("relative flex items-center justify-center", className)}>
-      <div className="relative w-12 h-12 lg:w-16 lg:h-16 bg-white rounded-full flex items-center justify-center p-1.5 shadow-2xl overflow-hidden border border-gold/20 group-hover:scale-110 transition-transform duration-500">
+    <div className={cn("relative flex items-center justify-center h-12 w-12 lg:h-16 lg:w-16", className)}>
+      <div className="relative w-full h-full bg-white rounded-full flex items-center justify-center p-1.5 shadow-2xl overflow-hidden border border-gold/20 group-hover:scale-110 transition-transform duration-500">
         <Image
           src="/brand-logo-official.png"
           alt="Sashwin Foundation"
