@@ -8,7 +8,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import GlassCard from "@/components/shared/GlassCard";
-import BrandStamp from "@/components/shared/BrandStamp";
 import { COMPANY_DATA } from "@/lib/constants";
 
 
@@ -22,7 +21,7 @@ export default function ConstructionPage() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/public/construction-bg.jpg"
+            src="/images/construction-bg.jpg"
             alt="Luxury Construction"
             fill
             className="object-cover opacity-30 scale-105"
@@ -135,7 +134,6 @@ export default function ConstructionPage() {
 
                    <RevealOnScroll direction={item.reversed ? "left" : "right"} className="w-full lg:w-1/2 space-y-8">
                       <div className="flex items-center gap-6 mb-4">
-                         <BrandStamp size="md" className="border-gold/40 shadow-gold/5" />
                          <p className="text-gold text-[10px] uppercase tracking-[0.5em] font-black">{item.technical}</p>
                       </div>
                       <h3 className="text-4xl md:text-5xl font-display text-ivory uppercase tracking-tighter">{item.title}</h3>
@@ -171,7 +169,6 @@ export default function ConstructionPage() {
                      ].map((spec, i) => (
                        <div key={i} className="flex justify-between items-center py-4 border-b border-gold/5 group hover:bg-gold/5 px-4 transition-all">
                           <div className="flex items-center gap-4">
-                             <BrandStamp size="sm" className="w-6 h-6 p-0.5 border-none bg-transparent" />
                              <span className="text-gold text-[10px] uppercase tracking-widest font-bold">{spec.label}</span>
                           </div>
                           <span className="text-ivory text-sm font-light italic">{spec.value}</span>
@@ -209,7 +206,6 @@ export default function ConstructionPage() {
                   </div>
                   <div className="space-y-6 relative z-10">
                     <div className="flex items-center gap-4">
-                       <BrandStamp size="md" className="bg-void border-gold/20" />
                        <div className="h-px flex-grow bg-gold/10 group-hover:bg-gold/40 transition-all duration-1000" />
                     </div>
                     <h4 className="text-3xl font-display text-ivory tracking-tighter uppercase group-hover:text-gold transition-colors">{item.title}</h4>

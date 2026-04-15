@@ -26,11 +26,39 @@ export function InvestmentCards() {
       icon: Wallet
     },
     {
+      title: "Inflation Hedge",
+      amount: "Real Value",
+      sub: "Fiat Devaluation Shield",
+      detail: "Hard asset allocation in high-demand tourism zones ensuring wealth preservation.",
+      icon: TrendingUp
+    },
+    {
+      title: "Audit Rights",
+      amount: "Total Access",
+      sub: "Technical Transparency",
+      detail: "Direct access to annual engineering and financial audits of the resort asset.",
+      icon: ShieldCheck
+    },
+    {
       title: "Technical Advocacy",
       amount: "Legacy Share",
       sub: "Shared Foundation Standard",
       detail: "Partners hold direct interest in a verified ISO 9001:2015 architectural masterpiece.",
       icon: Users
+    },
+    {
+      title: "Family Membership",
+      amount: "30 Days",
+      sub: "Annual Usage Credit",
+      detail: "Complimentary annual stay for family with priority booking during peak seasons.",
+      icon: Users
+    },
+    {
+      title: "Liquidity Portal",
+      amount: "Instant Sale",
+      sub: "Secondary Market Access",
+      detail: "Internal platform to transfer shares to verified legacy partners with zero friction.",
+      icon: Wallet
     },
     {
       title: "Verified Integrity",

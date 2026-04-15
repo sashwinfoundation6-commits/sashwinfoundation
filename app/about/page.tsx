@@ -7,7 +7,6 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import GlassCard from "@/components/shared/GlassCard";
-import BrandStamp from "@/components/shared/BrandStamp";
 
 export default function AboutPage() {
   return (
@@ -92,7 +91,6 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                <GlassCard className="text-left group border-none">
                   <div className="flex items-center gap-4 mb-6">
-                     <BrandStamp size="md" />
                      <h4 className="text-3xl font-display text-ivory uppercase">2000</h4>
                   </div>
                   <p className="text-ivory-muted text-lg leading-relaxed font-light">
@@ -101,7 +99,6 @@ export default function AboutPage() {
                </GlassCard>
                <GlassCard className="text-left group border-none">
                   <div className="flex items-center gap-4 mb-6">
-                     <BrandStamp size="md" />
                      <h4 className="text-3xl font-display text-ivory uppercase">2012</h4>
                   </div>
                   <p className="text-ivory-muted text-lg leading-relaxed font-light">
@@ -110,7 +107,6 @@ export default function AboutPage() {
                </GlassCard>
                <GlassCard className="text-left group border-none">
                   <div className="flex items-center gap-4 mb-6">
-                     <BrandStamp size="md" />
                      <h4 className="text-3xl font-display text-ivory uppercase">2024</h4>
                   </div>
                   <p className="text-ivory-muted text-lg leading-relaxed font-light">
@@ -170,16 +166,9 @@ export default function AboutPage() {
               <div className="glass-card border-gold/10 p-12 text-center">
                  <h3 className="text-2xl font-display text-ivory mb-8">Building Faith Across Tamil Nadu</h3>
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-                    {[
-                      "Technical audit at every stage",
-                      "Transparent material procurement",
-                      "Zero hidden costs (Fixed Price)",
-                      "Integrated Architectural Design",
-                      "Post-handover verification",
-                      "High-resale brand authority"
-                    ].map((point, i) => (
+                    {["Technical audit at every stage", "Transparent material procurement", "Zero hidden costs (Fixed Price)", "Integrated Architectural Design", "Post-handover verification", "High-resale brand authority"].map((point, i) => (
                       <div key={i} className="flex items-start gap-4">
-                        <BrandStamp size="sm" className="w-5 h-5 mt-1 border-none bg-transparent p-0" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold mt-2 shrink-0" />
                         <span className="text-ivory-muted text-sm leading-relaxed">{point}</span>
                       </div>
                     ))}

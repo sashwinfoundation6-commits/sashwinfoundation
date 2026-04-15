@@ -4,7 +4,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { MoveRight, Building2, Gem, Paintbrush } from "lucide-react";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import CTAButton from "@/components/shared/CTAButton";
-import BrandStamp from "@/components/shared/BrandStamp";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -162,9 +161,6 @@ export function ServicesGrid() {
               </RevealOnScroll>
 
               <RevealOnScroll direction={i % 2 === 0 ? "right" : "left"} className="w-full lg:w-1/2 space-y-8">
-                <div className="w-16 h-16 bg-void border border-gold/10 flex items-center justify-center">
-                  <BrandStamp size="sm" className="text-gold" />
-                </div>
                 <h3 className="text-4xl md:text-5xl font-display text-ivory tracking-tight">{service.title}</h3>
                 <p className="text-ivory-muted text-lg leading-relaxed font-light">
                   {service.longDescription}
@@ -207,7 +203,7 @@ export function LegacyVerification() {
                     "25-Year Structural Faith Transfer Guarantee."
                   ].map((text, i) => (
                     <RevealOnScroll key={i} delay={i * 200} direction="left" className="flex items-center gap-8 group">
-                       <BrandStamp size="sm" className="bg-void border-gold/10 group-hover:border-gold/50 transition-all duration-700" />
+                       <div className="w-2 h-2 rounded-full bg-gold shrink-0" />
                        <p className="text-ivory/60 text-xl font-light italic leading-relaxed group-hover:text-ivory transition-colors">
                          {text}
                        </p>
