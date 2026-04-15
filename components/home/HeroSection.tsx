@@ -111,7 +111,7 @@ export default function HeroSection() {
   const headingWords = ["Engineer", "Legacies."];
 
   return (
-    <section ref={containerRef} className="relative min-h-[110vh] w-full overflow-hidden flex flex-col items-center bg-void pt-48 lg:pt-60">
+    <section ref={containerRef} className="relative min-h-[110vh] w-full overflow-hidden flex flex-col items-center bg-void">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-hero opacity-90" />
@@ -135,26 +135,26 @@ export default function HeroSection() {
       <div ref={particleContainerRef} className="absolute inset-0 z-10 pointer-events-none" />
 
       {/* Content */}
-      <div className="container mx-auto px-6 relative z-20 text-center flex flex-col items-center pt-32 md:pt-40">
+      <div className="container mx-auto px-6 relative z-20 text-center flex flex-col items-center pt-48 lg:pt-60 pb-32">
         <motion.div 
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8 }}
-           className="mb-6"
+           className="mb-8"
         >
-          <p className="text-gold-BRIGHT text-xs md:text-sm uppercase tracking-[0.5em]">
+          <p className="text-gold-BRIGHT text-[10px] md:text-sm uppercase tracking-[0.5em] font-bold">
             COIMBATORE × CHENNAI
           </p>
         </motion.div>
 
-        <h1 className="flex flex-col gap-2 mb-10">
+        <h1 className="flex flex-col gap-0 mb-10">
           {headingWords.map((word, i) => (
             <span key={i} className="overflow-hidden">
               <motion.span 
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 1, delay: 0.2 + i * 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="block text-[clamp(4rem,10vw,9rem)] font-display text-ivory leading-[0.9]"
+                className="block text-[clamp(3.5rem,12vw,10rem)] font-display text-ivory leading-[0.85] tracking-tighter uppercase"
               >
                 {word}
               </motion.span>

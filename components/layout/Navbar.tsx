@@ -53,7 +53,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex flex-col group py-2">
           <div className="flex items-center gap-4">
-            <div className="relative h-12 lg:h-16 flex items-center group-hover:scale-105 transition-transform duration-500">
+            <div className="relative h-10 lg:h-14 flex items-center group-hover:scale-105 transition-transform duration-500">
                <BrandLogo className="h-full" />
             </div>
           </div>
