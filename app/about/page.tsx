@@ -2,11 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
-import { Award, Target, Users, History, CheckCircle2, TrendingUp } from "lucide-react";
+import { Target, Users } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import GlassCard from "@/components/shared/GlassCard";
+import BrandStamp from "@/components/shared/BrandStamp";
 
 export default function AboutPage() {
   return (
@@ -88,29 +89,35 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-7xl font-display text-ivory tracking-tighter">Our Milestones</h2>
            </RevealOnScroll>
 
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <GlassCard className="text-left group border-none">
-                 <History className="w-10 h-10 text-gold mb-6 group-hover:scale-110 transition-transform" />
-                 <h4 className="text-2xl font-display text-ivory mb-4 uppercase">2000</h4>
-                 <p className="text-ivory-muted text-sm leading-relaxed">
-                    Initialization of Sashwin Foundation with its first residential project in Coimbatore.
-                 </p>
-              </GlassCard>
-              <GlassCard className="text-left group border-none">
-                 <Award className="w-10 h-10 text-gold mb-6 group-hover:scale-110 transition-transform" />
-                 <h4 className="text-2xl font-display text-ivory mb-4 uppercase">2012</h4>
-                 <p className="text-ivory-muted text-sm leading-relaxed">
-                    Expansion into Chennai and ISO certification for engineering standards.
-                 </p>
-              </GlassCard>
-              <GlassCard className="text-left group border-none">
-                 <TrendingUp className="w-10 h-10 text-gold mb-6 group-hover:scale-110 transition-transform" />
-                 <h4 className="text-2xl font-display text-ivory mb-4 uppercase">2024</h4>
-                 <p className="text-ivory-muted text-sm leading-relaxed">
-                    Launch of &apos;MISHTI Holiday Homes&apos; — our flagship luxury resort investment vertical.
-                 </p>
-              </GlassCard>
-           </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+               <GlassCard className="text-left group border-none">
+                  <div className="flex items-center gap-4 mb-6">
+                     <BrandStamp size="md" />
+                     <h4 className="text-3xl font-display text-ivory uppercase">2000</h4>
+                  </div>
+                  <p className="text-ivory-muted text-lg leading-relaxed font-light">
+                     Initialization of Sashwin Foundation with its first residential project in Coimbatore.
+                  </p>
+               </GlassCard>
+               <GlassCard className="text-left group border-none">
+                  <div className="flex items-center gap-4 mb-6">
+                     <BrandStamp size="md" />
+                     <h4 className="text-3xl font-display text-ivory uppercase">2012</h4>
+                  </div>
+                  <p className="text-ivory-muted text-lg leading-relaxed font-light">
+                     Expansion into Chennai and ISO certification for engineering standards.
+                  </p>
+               </GlassCard>
+               <GlassCard className="text-left group border-none">
+                  <div className="flex items-center gap-4 mb-6">
+                     <BrandStamp size="md" />
+                     <h4 className="text-3xl font-display text-ivory uppercase">2024</h4>
+                  </div>
+                  <p className="text-ivory-muted text-lg leading-relaxed font-light">
+                     Launch of &apos;MISHTI Holiday Homes&apos; — our flagship luxury resort investment vertical.
+                  </p>
+               </GlassCard>
+            </div>
         </div>
       </section>
 
@@ -172,7 +179,7 @@ export default function AboutPage() {
                       "High-resale brand authority"
                     ].map((point, i) => (
                       <div key={i} className="flex items-start gap-4">
-                        <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-1" />
+                        <BrandStamp size="sm" className="w-5 h-5 mt-1 border-none bg-transparent p-0" />
                         <span className="text-ivory-muted text-sm leading-relaxed">{point}</span>
                       </div>
                     ))}

@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Mail, Phone } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { COMPANY_DATA } from "@/lib/constants";
@@ -51,8 +52,16 @@ export default function Navbar() {
       <div className="container mx-auto px-6 h-full flex items-center justify-between relative z-10">
         {/* Logo */}
         <Link href="/" className="flex flex-col group py-2">
-          <div className="flex items-center gap-3">
-            <Building2 className="w-6 h-6 lg:w-7 lg:h-7 text-gold group-hover:rotate-12 transition-transform duration-500" />
+          <div className="flex items-center gap-4">
+            <div className="relative w-12 h-12 lg:w-16 lg:h-16 group-hover:scale-105 transition-transform duration-500">
+               <Image
+                 src="/brand-logo.png"
+                 alt="Sashwin Foundation"
+                 fill
+                 className="object-contain"
+                 priority
+               />
+            </div>
             <div className="flex flex-col">
               <span className="font-display text-xl lg:text-3xl font-bold tracking-tight text-ivory leading-none">
                 SASHWIN

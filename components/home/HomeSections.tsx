@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { MoveRight, Building2, Gem, Paintbrush } from "lucide-react";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import CTAButton from "@/components/shared/CTAButton";
+import BrandStamp from "@/components/shared/BrandStamp";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -162,7 +163,7 @@ export function ServicesGrid() {
 
               <RevealOnScroll direction={i % 2 === 0 ? "right" : "left"} className="w-full lg:w-1/2 space-y-8">
                 <div className="w-16 h-16 bg-void border border-gold/10 flex items-center justify-center">
-                  <service.icon className="w-7 h-7 text-gold" />
+                  <BrandStamp size="sm" className="text-gold" />
                 </div>
                 <h3 className="text-4xl md:text-5xl font-display text-ivory tracking-tight">{service.title}</h3>
                 <p className="text-ivory-muted text-lg leading-relaxed font-light">
@@ -199,45 +200,20 @@ export function LegacyVerification() {
               Evidence of <br />
               <span className="text-gold italic font-light tracking-normal">Integrity.</span>
             </h2>
-            <div className="space-y-8 text-ivory/50 text-xl leading-relaxed font-light">
-              <p>
-                At Sashwin, truth is encoded into every blueprint. We don&apos;t rely on marketing promises; we rely on the physics of engineering and the absolute precision of ISO documentation.
-              </p>
-              <p>
-                From foundational soil-bearing capacity certificates to high-altitude structural wind-load verification, every Sashwin project is a documented scientific fact. Technical efficiency is our core theology.
-              </p>
-              
-              <div className="pt-10 grid grid-cols-1 sm:grid-cols-2 gap-12 border-t border-gold/10">
-                <div className="space-y-4">
-                   <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-gold" />
-                      <p className="text-ivory font-bold text-lg uppercase tracking-widest">ISO 9001:2015</p>
-                   </div>
-                   <p className="text-[10px] uppercase tracking-[0.4em] text-gold-BRIGHT font-bold">Standardized Excellence</p>
-                   <p className="text-xs text-ivory/30 leading-loose">Rigorous quality management systems verified by international certification bodies for every build phase.</p>
-                </div>
-                <div className="space-y-4">
-                   <div className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-gold" />
-                      <p className="text-ivory font-bold text-lg uppercase tracking-widest">50-Year Faith</p>
-                   </div>
-                   <p className="text-[10px] uppercase tracking-[0.4em] text-gold-BRIGHT font-bold">Structural Longevity</p>
-                   <p className="text-xs text-ivory/30 leading-loose">Engineered with redundancy factors that exceed standard regional requirements for lifetime structural stability.</p>
-                </div>
-              </div>
-
-              <div className="bg-gold/5 p-8 border-l-2 border-gold flex flex-col gap-4">
-                 <p className="text-xs text-gold font-bold uppercase tracking-[0.3em]">Verification Protocol</p>
-                 <div className="flex flex-wrap gap-x-8 gap-y-4">
-                    {["Soil Analysis", "Steel Tensile Test", "Concrete Cubic Strength", "Waterproof Warranty"].map((item, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <div className="w-1 h-1 rounded-full bg-ivory/40" />
-                        <span className="text-[9px] uppercase tracking-widest text-ivory/60">{item}</span>
-                      </div>
-                    ))}
-                 </div>
-              </div>
-            </div>
+            <div className="space-y-12">
+                  {[
+                    "ISO 9001:2015 Structural Integrity Certified.",
+                    "Material Sourcing from Tier-1 Institutional Brands only.",
+                    "25-Year Structural Faith Transfer Guarantee."
+                  ].map((text, i) => (
+                    <RevealOnScroll key={i} delay={i * 200} direction="left" className="flex items-center gap-8 group">
+                       <BrandStamp size="sm" className="bg-void border-gold/10 group-hover:border-gold/50 transition-all duration-700" />
+                       <p className="text-ivory/60 text-xl font-light italic leading-relaxed group-hover:text-ivory transition-colors">
+                         {text}
+                       </p>
+                    </RevealOnScroll>
+                  ))}
+               </div>
           </RevealOnScroll>
 
           <RevealOnScroll direction="right" className="order-1 lg:order-2">

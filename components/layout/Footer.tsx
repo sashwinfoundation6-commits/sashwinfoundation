@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Building2, Phone, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { COMPANY_DATA } from "@/lib/constants";
 
 export default function Footer() {
@@ -14,13 +15,20 @@ export default function Footer() {
           {/* Col 1: Brand */}
           <div className="space-y-6">
             <Link href="/" className="flex flex-col group">
-              <div className="flex items-center gap-2">
-                <Building2 className="w-6 h-6 text-gold" />
+              <div className="flex items-center gap-4">
+                <div className="relative w-12 h-12 bg-white rounded-full p-2 border border-gold/10">
+                   <Image
+                     src="/brand-logo.png"
+                     alt="Sashwin Foundation"
+                     fill
+                     className="object-contain p-1"
+                   />
+                </div>
                 <span className="font-display text-2xl font-bold tracking-tight text-ivory">
                   SASHWIN FOUNDATION
                 </span>
               </div>
-              <span className="text-[10px] uppercase tracking-[0.4em] text-gold-BRIGHT ml-8 font-light mt-1">
+              <span className="text-[10px] uppercase tracking-[0.4em] text-gold-BRIGHT ml-16 font-light mt-1">
                 We Build Assets… Not Expenses.
               </span>
             </Link>
