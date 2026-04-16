@@ -20,7 +20,7 @@ export const COMPANY_DATA = {
   offices: [
     {
       city: "Coimbatore",
-      address: "133 – Amarar Jeevantham Road, 7th Street Extension, Gandhipuram, Coimbatore – 627"
+      address: "#347 D, Sakthi complex, 1st floor, thiruvalluvar street, vellaikinaru pirivu, G.N.Mills, near Martin home, Coimbatore - 641026"
     },
     {
       city: "Chennai",
