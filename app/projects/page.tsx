@@ -1,4 +1,6 @@
-import { MapPin, ArrowUpRight, ShieldCheck, Plus, Home, Building } from "lucide-react";
+"use client";
+
+import { MapPin, ArrowUpRight, ShieldCheck, Home, Building } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";

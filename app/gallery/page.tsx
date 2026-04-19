@@ -9,39 +9,27 @@ import RevealOnScroll from "@/components/shared/RevealOnScroll";
 
 const galleryCategories = ["All", "Residential", "Commercial", "Interiors", "Mishti Resorts"];
 
-interface GalleryItem {
-  id: number;
-  category: string;
-  title: string;
-  img: string;
-}
-
-const galleryItems: GalleryItem[] = [
-  { id: 1, category: "Mishti Resorts", title: "Mishti Infinity Pool", img: "/images/gallery-1.jpg" },
-  { id: 2, category: "Residential", title: "The Golden Crest Facade", img: "/images/residential-bg.jpg" },
-  { id: 3, category: "Interiors", title: "Minimalist Living Lounge", img: "/images/mishti-hero.jpg" },
-  { id: 4, category: "Mishti Resorts", title: "Resort Villa Exterior", img: "/images/mishti-teaser.jpg" },
-  { id: 5, category: "Residential", title: "Sashwin Elite Estate", img: "/images/hero-bg.jpg" },
-  { id: 6, category: "Mishti Resorts", title: "Night View Terrace", img: "/images/gallery-1.jpg" },
-];
-
 import { db } from "@/lib/firebase";
 import { collection, query, orderBy } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedImage, setSelectedImage] = useState<any>(null);
+  const [selectedImage, setSelectedImage] = useState<{
+    img: string;
+    title: string;
+    category: string;
+  } | null>(null);
 
   const [value, loading, error] = useCollection(
     query(collection(db, "gallery"), orderBy("createdAt", "desc"))
   );
 
-  const galleryItems = value?.docs.map(doc => ({ id: doc.id, ...doc.data() })) || [];
+  const galleryItems = value?.docs.map(doc => ({ id: doc.id, ...(doc.data() as { img: string, title: string, category: string }) })) || [];
 
   const filteredItems = activeCategory === "All" 
     ? galleryItems 
-    : galleryItems.filter((item: any) => item.category === activeCategory);
+    : galleryItems.filter((item) => item.category === activeCategory);
 
   return (
     <main className="min-h-screen bg-void">
@@ -102,7 +90,7 @@ export default function GalleryPage() {
             </div>
           ) : (
             <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-              {filteredItems.map((item: any, i: number) => (
+              {filteredItems.map((item: { id: string; img: string; title: string; category: string }, i: number) => (
                 <RevealOnScroll key={item.id} delay={i * 100} className="break-inside-avoid">
                   <div 
                     className="relative group rounded-2xl overflow-hidden glass-card p-0 border-gold/10 cursor-pointer"

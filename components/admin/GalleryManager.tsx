@@ -204,7 +204,12 @@ export default function GalleryManager() {
                 <div className="absolute inset-0 bg-void/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div className="flex gap-3 mb-4 scale-90 group-hover:scale-100 transition-transform">
                     <button 
-                      onClick={() => handleEdit({ ...item, id: doc.id })}
+                      onClick={() => handleEdit({ 
+                        id: doc.id,
+                        title: item.title,
+                        category: item.category,
+                        img: item.img
+                      })}
                       className="p-3 bg-gold text-void rounded-full hover:scale-110 transition-transform"
                     >
                       <Edit2 className="w-4 h-4" />

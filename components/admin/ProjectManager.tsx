@@ -275,7 +275,15 @@ export default function ProjectManager() {
                 />
                 <div className="absolute top-4 right-4 flex gap-2">
                   <button 
-                    onClick={() => handleEdit({ ...project, id: doc.id })}
+                    onClick={() => handleEdit({ 
+                      id: doc.id,
+                      title: project.title,
+                      location: project.location,
+                      type: project.type,
+                      image: project.image,
+                      status: project.status,
+                      features: project.features
+                    })}
                     className="p-2 bg-void/80 text-gold rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all hover:scale-110"
                   >
                     <Edit2 className="w-3 h-3" />

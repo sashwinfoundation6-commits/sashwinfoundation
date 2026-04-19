@@ -35,7 +35,7 @@ export default function AdminLoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push("/admin/dashboard");
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError("Invalid administrative credentials. Please verify your access.");
       console.error(err);
     } finally {
