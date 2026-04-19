@@ -25,13 +25,23 @@ const galleryItems: GalleryItem[] = [
   { id: 6, category: "Mishti Resorts", title: "Night View Terrace", img: "/images/gallery-1.jpg" },
 ];
 
+import { db } from "@/lib/firebase";
+import { collection, query, orderBy } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
+
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [selectedImage, setSelectedImage] = useState<any>(null);
+
+  const [value, loading, error] = useCollection(
+    query(collection(db, "gallery"), orderBy("createdAt", "desc"))
+  );
+
+  const galleryItems = value?.docs.map(doc => ({ id: doc.id, ...doc.data() })) || [];
 
   const filteredItems = activeCategory === "All" 
     ? galleryItems 
-    : galleryItems.filter(item => item.category === activeCategory);
+    : galleryItems.filter((item: any) => item.category === activeCategory);
 
   return (
     <main className="min-h-screen bg-void">
@@ -78,31 +88,45 @@ export default function GalleryPage() {
       {/* Masonry Grid (Simplified) */}
       <section className="py-24 bg-void min-h-[600px]">
         <div className="container mx-auto px-6">
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-            {filteredItems.map((item, i) => (
-              <RevealOnScroll key={item.id} delay={i * 100} className="break-inside-avoid">
-                <div 
-                  className="relative group rounded-2xl overflow-hidden glass-card p-0 border-gold/10 cursor-pointer"
-                  onClick={() => setSelectedImage(item)}
-                >
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    width={800}
-                    height={1000}
-                    className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
-                  />
-                  
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-void/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8">
-                     <Search className="w-8 h-8 text-gold mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500" />
-                     <p className="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">{item.category}</p>
-                     <h3 className="text-ivory font-display text-2xl text-center">{item.title}</h3>
+          {loading ? (
+             <div className="py-20 text-center">
+                <div className="w-10 h-10 border-2 border-gold/20 border-t-gold rounded-full animate-spin mx-auto" />
+             </div>
+          ) : error ? (
+            <div className="py-20 text-center text-terra-light italic">
+               Visual Ledger Error: Metadata Unreachable.
+            </div>
+          ) : filteredItems.length === 0 ? (
+            <div className="py-20 text-center text-ivory/40 italic">
+               No architectural captures found for this category.
+            </div>
+          ) : (
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+              {filteredItems.map((item: any, i: number) => (
+                <RevealOnScroll key={item.id} delay={i * 100} className="break-inside-avoid">
+                  <div 
+                    className="relative group rounded-2xl overflow-hidden glass-card p-0 border-gold/10 cursor-pointer"
+                    onClick={() => setSelectedImage(item)}
+                  >
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      width={800}
+                      height={1000}
+                      className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                    />
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-void/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8">
+                       <Search className="w-8 h-8 text-gold mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500" />
+                       <p className="text-gold text-[10px] uppercase tracking-[0.3em] font-bold mb-2">{item.category}</p>
+                       <h3 className="text-ivory font-display text-2xl text-center">{item.title}</h3>
+                    </div>
                   </div>
-                </div>
-              </RevealOnScroll>
-            ))}
-          </div>
+                </RevealOnScroll>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

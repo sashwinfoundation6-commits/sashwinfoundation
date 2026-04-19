@@ -1,48 +1,22 @@
-"use client";
-
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Building, MapPin, ArrowUpRight, ShieldCheck, Home } from "lucide-react";
+import { MapPin, ArrowUpRight, ShieldCheck, Plus, Home, Building } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
-import GlassCard from "@/components/shared/GlassCard";
 import CTAButton from "@/components/shared/CTAButton";
+import GlassCard from "@/components/shared/GlassCard";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { collection, query, orderBy } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import Link from "next/link";
+import Image from "next/image";
 
-const projects = [
-  {
-    id: 1,
-    title: "The Golden Crest",
-    location: "Race Course, Coimbatore",
-    type: "Premium Apartments",
-    image: "/images/residential-bg.jpg",
-    status: "Completed",
-    features: ["Gold LEED Certified", "Private Gym", "Smart Home Ready"]
-  },
-  {
-    id: 2,
-    title: "Sashwin Elite",
-    location: "Saravanampatti, Coimbatore",
-    type: "Luxury Villas",
-    image: "/images/hero-bg.jpg",
-    status: "Ready to Occupy",
-    features: ["Private Garden", "24/7 Security", "Solar Powered"]
-  },
-  {
-    id: 3,
-    title: "Urban Legacy",
-    location: "OMR, Chennai",
-    type: "Modern Townhouses",
-    image: "/images/mishti-teaser.jpg",
-    status: "Under Construction",
-    features: ["Premium Fitments", "Clubhouse Access", "EV Charging"]
-  }
-];
+export default function ResidentialProjects() {
+  const [value, loading, error] = useCollection(
+    query(collection(db, "projects"), orderBy("createdAt", "desc"))
+  );
 
-export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-void">
+    <main className="min-h-screen bg-void font-sans">
       <Navbar />
 
       {/* Hero */}
@@ -65,63 +39,85 @@ export default function ProjectsPage() {
       <section className="py-24 bg-void">
         <div className="container mx-auto px-6">
           <div className="space-y-32">
-            {projects.map((project, i) => (
-              <RevealOnScroll key={project.id} direction={i % 2 === 0 ? "left" : "right"}>
-                <div className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center`}>
-                  {/* Image Card */}
-                  <div className="w-full lg:w-1/2 group">
-                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden glass-card p-0 border-gold/10">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-transparent opacity-60" />
-                      
-                      {/* Status Tag */}
-                      <div className="absolute top-6 left-6 px-4 py-2 bg-void/80 backdrop-blur-md border border-gold/20 rounded-full text-[10px] uppercase tracking-widest text-gold font-bold">
-                        {project.status}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="w-full lg:w-1/2 space-y-8">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-gold">
-                        <MapPin className="w-4 h-4" />
-                        <span className="text-xs uppercase tracking-widest">{project.location}</span>
-                      </div>
-                      <h2 className="text-4xl md:text-6xl font-display text-ivory">{project.title}</h2>
-                      <p className="text-terra-light font-script text-2xl">{project.type}</p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-4">
-                      {project.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2 bg-carbon/50 border border-glass-border px-4 py-2 rounded-lg text-xs text-ivory-muted">
-                          <ShieldCheck className="w-3 h-3 text-gold" />
-                          {feature}
+            {loading ? (
+               <div className="py-40 text-center">
+                  <div className="w-12 h-12 border-2 border-gold/20 border-t-gold rounded-full animate-spin mx-auto" />
+               </div>
+            ) : error ? (
+               <div className="py-40 text-center text-terra-light italic px-6">
+                  Architectural Sync Error: Connection to Ledger Fragmented.
+               </div>
+            ) : value?.docs.length === 0 ? (
+               <div className="py-40 text-center text-ivory/40 italic">
+                  No residential assets found in the current ledger fragment.
+               </div>
+            ) : value?.docs.map((doc, i) => {
+              const project = doc.data() as {
+                title: string;
+                location: string;
+                type: string;
+                image: string;
+                status: string;
+                features: string[];
+              };
+              return (
+                <RevealOnScroll key={doc.id} direction={i % 2 === 0 ? "left" : "right"}>
+                  <div className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-center`}>
+                    {/* Image Card */}
+                    <div className="w-full lg:w-1/2 group">
+                      <div className="relative aspect-[16/10] rounded-2xl overflow-hidden glass-card p-0 border-gold/10">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-transparent opacity-60" />
+                        
+                        {/* Status Tag */}
+                        <div className="absolute top-6 left-6 px-4 py-2 bg-void/80 backdrop-blur-md border border-gold/20 rounded-full text-[10px] uppercase tracking-widest text-gold font-bold">
+                          {project.status}
                         </div>
-                      ))}
+                      </div>
                     </div>
 
-                    <p className="text-ivory/50 text-lg leading-relaxed font-light">
-                      Explore the technical truth of our residential assets. Every line is engineered for generational endurance, featuring verified materials and architectural integrity.
-                    </p>
+                    {/* Content */}
+                    <div className="w-full lg:w-1/2 space-y-8">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-gold">
+                          <MapPin className="w-4 h-4" />
+                          <span className="text-xs uppercase tracking-widest">{project.location}</span>
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-display text-ivory">{project.title}</h2>
+                        <p className="text-terra-light font-script text-2xl">{project.type}</p>
+                      </div>
 
-                    <div className="pt-4 flex gap-6">
-                      <CTAButton href="/contact" variant="primary" className="px-10 font-bold tracking-widest text-[10px]">
-                        VIEW BLUEPRINT
-                      </CTAButton>
-                      <Link href="/contact" className="flex items-center gap-2 text-ivory hover:text-gold transition-colors text-[10px] tracking-[0.3em] font-bold group/btn">
-                        REQUEST LEGACY BRIEF <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      </Link>
+                      <div className="flex flex-wrap gap-4">
+                        {project.features.map((feature: string, idx: number) => (
+                          <div key={idx} className="flex items-center gap-2 bg-carbon/50 border border-glass-border px-4 py-2 rounded-lg text-xs text-ivory-muted">
+                            <ShieldCheck className="w-3 h-3 text-gold" />
+                            {feature}
+                          </div>
+                        ))}
+                      </div>
+
+                      <p className="text-ivory/50 text-lg leading-relaxed font-light">
+                        Explore the technical truth of our residential assets. Every line is engineered for generational endurance, featuring verified materials and architectural integrity.
+                      </p>
+
+                      <div className="pt-4 flex gap-6">
+                        <CTAButton href="/contact" variant="primary" className="px-10 font-bold tracking-widest text-[10px]">
+                          VIEW BLUEPRINT
+                        </CTAButton>
+                        <Link href="/contact" className="flex items-center gap-2 text-ivory hover:text-gold transition-colors text-[10px] tracking-[0.3em] font-bold group/btn">
+                          REQUEST LEGACY BRIEF <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </RevealOnScroll>
-            ))}
+                </RevealOnScroll>
+              );
+            })}
           </div>
         </div>
       </section>
