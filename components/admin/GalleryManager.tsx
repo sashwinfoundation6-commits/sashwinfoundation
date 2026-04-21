@@ -20,42 +20,28 @@ import {
   Plus
 } from "lucide-react";
 import ImageUpload from "./ImageUpload";
-import GlassCard from "@/components/shared/GlassCard";
 import Image from "next/image";
 
 const categories = ["Residential", "Commercial", "Interiors", "Mishti Resorts", "Architectural Plans"];
 
 export default function GalleryManager() {
+  const [form, setForm] = useState({ title: "", category: "Residential", img: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Form State
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("Residential");
-  const [img, setImg] = useState("");
-
-  const [value, docsLoading, error] = useCollection(
+  const [value, docsLoading] = useCollection(
     query(collection(db, "gallery"), orderBy("createdAt", "desc"))
   );
 
   const resetForm = () => {
-    setTitle("");
-    setCategory("Residential");
-    setImg("");
+    setForm({ title: "", category: "Residential", img: "" });
     setIsEditing(false);
     setEditingId(null);
   };
 
-  const handleEdit = (item: {
-    id: string;
-    title: string;
-    category: string;
-    img: string;
-  }) => {
-    setTitle(item.title);
-    setCategory(item.category);
-    setImg(item.img);
+  const handleEdit = (item: { id: string; title: string; category: string; img: string }) => {
+    setForm({ title: item.title, category: item.category, img: item.img });
     setEditingId(item.id);
     setIsEditing(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -65,31 +51,22 @@ export default function GalleryManager() {
     e.preventDefault();
     setLoading(true);
     try {
-      const galleryData = {
-        title,
-        category,
-        img,
-        updatedAt: new Date(),
-      };
-
+      const data = { ...form, updatedAt: new Date() };
       if (editingId) {
-        await updateDoc(doc(db, "gallery", editingId), galleryData);
+        await updateDoc(doc(db, "gallery", editingId), data);
       } else {
-        await addDoc(collection(db, "gallery"), {
-          ...galleryData,
-          createdAt: new Date(),
-        });
+        await addDoc(collection(db, "gallery"), { ...data, createdAt: new Date() });
       }
       resetForm();
     } catch (err) {
-      console.error("Gallery update error:", err);
+      console.error("Gallery Sync Error:", err);
     } finally {
       setLoading(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (confirm("Verify visual deletion? This image will be removed from the public display.")) {
+    if (confirm("Verify visual deletion?")) {
       try {
         await deleteDoc(doc(db, "gallery", id));
       } catch (err) {
@@ -99,135 +76,103 @@ export default function GalleryManager() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Entry Form */}
-      <GlassCard className="p-8 border-gold/20">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="p-3 bg-gold/10 rounded-xl">
-            {isEditing ? <Edit2 className="w-5 h-5 text-gold" /> : <Plus className="w-5 h-5 text-gold" />}
-          </div>
-          <h3 className="text-xl font-display text-ivory">
-            {isEditing ? "Modify Visual Record" : "Upload Gallery Asset"}
-          </h3>
+    <div className="max-w-5xl mx-auto space-y-12">
+      {/* Zen Form */}
+      <div className="bg-void border border-gold/10 p-8 rounded-2xl shadow-2xl">
+        <div className="mb-8 flex justify-between items-center">
+            <h3 className="text-ivory font-display text-2xl uppercase tracking-tighter">
+              {isEditing ? "Modify <span className='text-gold italic'>Record</span>" : "Add <span className='text-gold italic'>Visualization</span>"}
+            </h3>
+            {isEditing && (
+              <button onClick={resetForm} className="text-ivory/40 hover:text-ivory text-[10px] uppercase tracking-widest transition-colors font-bold">Discard Changes</button>
+            )}
         </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Asset Title</label>
-              <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-                className="w-full bg-void/50 border border-white/5 rounded-xl px-4 py-3 text-ivory focus:border-gold/40 transition-all font-display text-lg"
-                placeholder="Mishti Infinity Pool View"
-              />
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <div className="group border-b border-white/5 focus-within:border-gold/30 transition-colors py-2">
+                <label className="block text-[8px] uppercase tracking-[0.4em] text-gold/40 mb-1 font-bold">Asset Title</label>
+                <input
+                  value={form.title}
+                  onChange={(e) => setForm({ ...form, title: e.target.value })}
+                  required
+                  placeholder="The Architectural Truth..."
+                  className="w-full bg-transparent text-ivory placeholder:text-ivory/10 outline-none font-display text-xl uppercase tracking-tighter"
+                />
+              </div>
 
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Category</label>
-              <div className="grid grid-cols-2 gap-2">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    type="button"
-                    onClick={() => setCategory(cat)}
-                    className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
-                      category === cat 
-                        ? "bg-gold text-void" 
-                        : "bg-carbon/50 text-ivory/40 border border-white/5 hover:border-gold/20"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
+              <div className="space-y-3">
+                <label className="block text-[8px] uppercase tracking-[0.4em] text-gold/40 font-bold">Classification</label>
+                <div className="flex flex-wrap gap-2">
+                  {categories.map((cat) => (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setForm({ ...form, category: cat })}
+                      className={`px-4 py-2 rounded-lg text-[9px] font-bold uppercase tracking-widest transition-all duration-300 border ${
+                        form.category === cat 
+                          ? "bg-gold text-void border-gold" 
+                          : "border-white/5 text-ivory/30 hover:border-gold/20"
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Media Transmission</label>
-              <ImageUpload
-                value={img}
-                onChange={setImg}
-                onRemove={() => setImg("")}
-              />
-            </div>
-
-            <div className="flex gap-4 pt-6">
-              <button
-                type="submit"
-                disabled={loading || !img || !title}
-                className="flex-1 bg-gold text-void py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:opacity-90 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : isEditing ? <Save className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                {isEditing ? "Verify Updates" : "Commit to Gallery"}
-              </button>
-              {isEditing && (
-                <button
-                  type="button"
-                  onClick={resetForm}
-                  className="px-8 bg-void border border-white/10 text-ivory/60 py-4 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:text-ivory transition-all"
-                >
-                  Cancel
-                </button>
-              )}
+            <div className="space-y-1">
+               <label className="block text-[8px] uppercase tracking-[0.4em] text-gold/40 mb-3 font-bold text-center">Media Ledger</label>
+               <ImageUpload
+                  value={form.img}
+                  onChange={(url) => setForm({ ...form, img: url })}
+                  onRemove={() => setForm({ ...form, img: "" })}
+               />
             </div>
           </div>
+
+          <button
+            type="submit"
+            disabled={loading || !form.img || !form.title}
+            className="w-full h-16 bg-gold text-void font-black text-[10px] uppercase tracking-[0.4em] transition-all hover:scale-[1.01] active:scale-95 disabled:opacity-20 flex items-center justify-center gap-4 group"
+          >
+            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (
+               <>
+                 {isEditing ? <Save className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                 {isEditing ? "Synchronize Ledger" : "Transmit Asset"}
+               </>
+            )}
+          </button>
         </form>
-      </GlassCard>
+      </div>
 
-      {/* Gallery Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {/* Simplified Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {docsLoading ? (
-          <div className="col-span-full py-20 text-center">
-            <Loader2 className="w-10 h-10 text-gold/20 animate-spin mx-auto" />
-          </div>
-        ) : error ? (
-          <div className="col-span-full py-20 text-center text-terra-light italic">
-            Visual Ledger Error: Metadata Unreachable.
-          </div>
+            <div className="col-span-full py-12 text-center opacity-20"><Loader2 className="w-8 h-8 animate-spin mx-auto" /></div>
         ) : value?.docs.map((doc) => {
-          const item = doc.data();
+          const item = doc.data() as { title: string, category: string, img: string };
           return (
-            <GlassCard key={doc.id} className="group overflow-hidden border-white/5 hover:border-gold/20 transition-all duration-500 p-0">
-              <div className="relative aspect-square overflow-hidden">
-                <Image
+            <div key={doc.id} className="group relative aspect-square bg-void border border-white/5 overflow-hidden rounded-xl transition-all duration-500 hover:border-gold/30">
+               <Image
                   src={item.img}
                   alt={item.title}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                />
-                
-                {/* Overlay Controls */}
-                <div className="absolute inset-0 bg-void/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="flex gap-3 mb-4 scale-90 group-hover:scale-100 transition-transform">
-                    <button 
-                      onClick={() => handleEdit({ 
-                        id: doc.id,
-                        title: item.title,
-                        category: item.category,
-                        img: item.img
-                      })}
-                      className="p-3 bg-gold text-void rounded-full hover:scale-110 transition-transform"
-                    >
-                      <Edit2 className="w-4 h-4" />
-                    </button>
-                    <button 
-                      onClick={() => handleDelete(doc.id)}
-                      className="p-3 bg-terra text-white rounded-full hover:scale-110 transition-transform"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                  <span className="text-gold text-[8px] font-black uppercase tracking-[0.3em]">{item.category}</span>
-                </div>
-              </div>
-              <div className="p-4">
-                <h5 className="text-ivory font-display text-sm truncate">{item.title}</h5>
-              </div>
-            </GlassCard>
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 opacity-40 group-hover:opacity-100"
+               />
+               <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-void to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                  <p className="text-gold text-[7px] font-black uppercase tracking-widest mb-1">{item.category}</p>
+                  <h4 className="text-ivory font-display text-[10px] truncate uppercase">{item.title}</h4>
+               </div>
+               
+               {/* Minimal Actions */}
+               <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button onClick={() => handleEdit({ id: doc.id, ...item })} className="p-2 bg-void/80 text-gold rounded-lg hover:bg-gold hover:text-void transition-colors"><Edit2 className="w-3 h-3" /></button>
+                  <button onClick={() => handleDelete(doc.id)} className="p-2 bg-void/80 text-terra rounded-lg hover:bg-terra hover:text-white transition-colors"><Trash2 className="w-3 h-3" /></button>
+               </div>
+            </div>
           );
         })}
       </div>

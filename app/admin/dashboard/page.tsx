@@ -5,11 +5,8 @@ import { auth } from "@/lib/firebase";
 import { onAuthStateChanged, signOut, User as FirebaseUser } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { 
-  Building2, 
-  Image as ImageIcon, 
   LogOut, 
-  Globe, 
-  LayoutDashboard
+  Globe
 } from "lucide-react";
 import ProjectManager from "@/components/admin/ProjectManager";
 import GalleryManager from "@/components/admin/GalleryManager";
@@ -54,69 +51,73 @@ export default function AdminDashboard() {
   if (!user) return null;
 
   return (
-    <main className="min-h-screen bg-void flex flex-col">
-      {/* Admin Header */}
-      <header className="sticky top-0 z-[110] bg-void/80 backdrop-blur-2xl border-b border-white/5">
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <div className="flex flex-col">
-              <span className="text-ivory font-display text-lg font-black tracking-tighter leading-none uppercase">Admin <span className="text-gold">Terminal</span></span>
-              <span className="text-gold text-[8px] font-bold tracking-[0.4em] uppercase mt-1">Sashwin Management Layer</span>
-            </div>
-            
-            <nav className="hidden md:flex items-center gap-2 ml-12">
-              <button 
-                onClick={() => setActiveTab("projects")}
-                className={`px-6 py-2 text-[10px] font-bold uppercase tracking-widest transition-all rounded-full flex items-center gap-2 ${activeTab === "projects" ? "bg-gold text-void" : "text-ivory/60 hover:text-ivory"}`}
-              >
-                <Building2 className="w-3 h-3" /> Projects
-              </button>
-              <button 
-                onClick={() => setActiveTab("gallery")}
-                className={`px-6 py-2 text-[10px] font-bold uppercase tracking-widest transition-all rounded-full flex items-center gap-2 ${activeTab === "gallery" ? "bg-gold text-void" : "text-ivory/60 hover:text-ivory"}`}
-              >
-                <ImageIcon className="w-3 h-3" /> Gallery
-              </button>
-            </nav>
+    <main className="min-h-screen bg-void text-ivory font-sans selection:bg-gold selection:text-void">
+      {/* Zen Top Navigation */}
+      <header className="h-24 border-b border-white/5 flex items-center justify-between px-10 sticky top-0 bg-void/90 backdrop-blur-3xl z-[200]">
+        <div className="flex items-center gap-12">
+          <div className="space-y-0.5">
+            <h1 className="text-xl font-display uppercase tracking-[-0.05em] leading-none">Command <span className="text-gold italic">Center</span></h1>
+            <p className="text-[7px] font-black uppercase tracking-[0.5em] text-gold/40">Sashwin Management Layer</p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <nav className="hidden md:flex items-center bg-white/[0.03] p-1 rounded-xl border border-white/5">
             <button 
-              onClick={() => window.open("/", "_blank")}
-              className="px-4 py-2 border border-gold/20 rounded-full text-[10px] font-bold uppercase tracking-widest text-ivory/60 hover:text-gold hover:border-gold/40 transition-all flex items-center gap-2"
+              onClick={() => setActiveTab("projects")}
+              className={`px-8 py-2.5 text-[9px] font-black uppercase tracking-widest transition-all rounded-lg ${activeTab === "projects" ? "bg-gold text-void shadow-lg shadow-gold/20" : "text-ivory/30 hover:text-ivory"}`}
             >
-              <Globe className="w-3 h-3" /> View Site
+              Projects
             </button>
             <button 
-              onClick={handleLogout}
-              className="p-3 bg-terra/10 text-terra-light rounded-full hover:bg-terra/20 transition-colors group"
-              title="Terminate Session"
+              onClick={() => setActiveTab("gallery")}
+              className={`px-8 py-2.5 text-[9px] font-black uppercase tracking-widest transition-all rounded-lg ${activeTab === "gallery" ? "bg-gold text-void shadow-lg shadow-gold/20" : "text-ivory/30 hover:text-ivory"}`}
             >
-              <LogOut className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+              Gallery
             </button>
-          </div>
+          </nav>
+        </div>
+
+        <div className="flex items-center gap-6">
+          <button 
+            onClick={() => window.open("/", "_blank")}
+            className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-gold/60 hover:text-gold transition-colors"
+          >
+            <Globe className="w-3 h-3" /> External View
+          </button>
+          
+          <div className="w-px h-4 bg-white/10" />
+
+          <button 
+            onClick={handleLogout}
+            className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-terra/60 hover:text-terra transition-colors"
+          >
+            <LogOut className="w-3 h-3" /> Terminate
+          </button>
         </div>
       </header>
 
-      {/* Main Dashboard Area */}
-      <div className="flex-1 container mx-auto px-6 py-12">
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-2">
-            <LayoutDashboard className="w-5 h-5 text-gold" />
-            <h2 className="text-3xl font-display text-ivory uppercase tracking-tighter">
-              {activeTab === "projects" ? "Project Portfolio" : "Verified Realty Gallery"}
-            </h2>
-          </div>
-          <p className="text-ivory/40 text-sm italic">
-            {activeTab === "projects" 
-              ? "Synchronize your architectural assets with the decentralized ledger." 
-              : "Curate the visual documentation of technical efficiency."}
-          </p>
+      {/* Centered Content Layer */}
+      <div className="py-20 px-10">
+        <div className="max-w-6xl mx-auto mb-20 space-y-2">
+          <p className="text-gold text-[10px] font-black uppercase tracking-[0.6em]">System Activity</p>
+          <h2 className="text-5xl font-display uppercase tracking-[-0.07em]">
+            {activeTab === "projects" ? "Synchronizing <span className='text-white/20 italic'>Portfolio</span>" : "Curating <span className='text-white/20 italic'>Visual Documentation</span>"}
+          </h2>
         </div>
 
-        {activeTab === "projects" && <ProjectManager />}
-        {activeTab === "gallery" && <GalleryManager />}
+        <div className="transition-all duration-700">
+           {activeTab === "projects" && <ProjectManager />}
+           {activeTab === "gallery" && <GalleryManager />}
+        </div>
       </div>
+
+      {/* Status Footer */}
+      <footer className="fixed bottom-0 left-0 right-0 h-10 border-t border-white/5 bg-void/50 backdrop-blur-md flex items-center justify-between px-10 z-[200]">
+         <div className="flex items-center gap-4">
+            <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+            <span className="text-[7px] font-black uppercase tracking-[0.4em] text-ivory/20">Architectural Ledger Connected</span>
+         </div>
+         <span className="text-[7px] font-black uppercase tracking-[0.4em] text-ivory/20">© 2024 Sashwin Foundation | Command v2.4</span>
+      </footer>
     </main>
   );
 }
