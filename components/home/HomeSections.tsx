@@ -98,7 +98,7 @@ const serviceDetails = [
     icon: Gem,
     link: "/mishti",
     tag: "Asset Class",
-    image: "/images/hero-bg.jpg",
+    image: "/images/hero-luxury.png",
     specs: ["Solar-Thermal Optimization", "Psychological Flow Analysis", "BIM-Integrated Blueprinting"]
   },
   {
@@ -108,7 +108,7 @@ const serviceDetails = [
     icon: Building2,
     link: "/construction",
     tag: "ISO Certified",
-    image: "/images/construction-bg.jpg",
+    image: "/images/construction-mastery.png",
     specs: ["M25+ Foundation Integrity", "Verified Material Provenance", "Live Technical Auditing"]
   },
   {
@@ -118,7 +118,7 @@ const serviceDetails = [
     icon: Paintbrush,
     link: "/interiors",
     tag: "Sensory Design",
-    image: "/images/gallery-1.jpg",
+    image: "/images/interior-bespoke.png",
     specs: ["Atmospheric Ergonomics", "Eco-Certified Finishings", "Acoustic Material Science"]
   }
 ];
@@ -301,8 +301,8 @@ export function MishtiTeaser() {
               <div className="absolute inset-x-[-20px] inset-y-[-20px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
               <div className="relative h-full w-full rounded-none overflow-hidden glass-card p-0 border-gold/20">
                 <Image
-                  src="/images/mishti-teaser.jpg"
-                  alt="Mishti Luxury Villa"
+                  src="/images/mishti-resort.png"
+                  alt="Mishti Luxury Villa Masterpiece"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />

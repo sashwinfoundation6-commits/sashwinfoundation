@@ -21,8 +21,8 @@ export default function ConstructionPage() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/construction-bg.jpg"
-            alt="Luxury Construction"
+            src="/images/construction-mastery.png"
+            alt="Luxury Construction Masterpiece"
             fill
             className="object-cover opacity-30 scale-105"
             priority

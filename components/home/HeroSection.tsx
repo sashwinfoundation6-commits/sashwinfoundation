@@ -122,8 +122,8 @@ export default function HeroSection() {
       {/* Background Image with Parallax Mask */}
       <motion.div style={{ y: y1, scale }} className="absolute inset-0 z-0 opacity-40">
         <Image
-          src="/images/hero-bg.jpg"
-          alt="Luxury Villa"
+          src="/images/hero-luxury.png"
+          alt="Luxury Villa Masterpiece"
           fill
           className="object-cover"
           priority

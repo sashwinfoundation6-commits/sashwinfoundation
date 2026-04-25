@@ -38,14 +38,11 @@ export default function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-[110] transition-all duration-700",
-        isScrolled ? "h-16 lg:h-20" : "h-20 lg:h-28"
+        "fixed top-0 left-0 right-0 z-[110] transition-all duration-500",
+        isScrolled ? "h-16 lg:h-20 bg-void/90 backdrop-blur-2xl shadow-2xl" : "h-20 lg:h-28 bg-transparent"
       )}
     >
-      <div className={cn(
-        "absolute inset-0 transition-opacity duration-700",
-        isScrolled ? "bg-void/95 backdrop-blur-3xl opacity-100" : "bg-transparent opacity-0"
-      )} />
+      {/* Background Layer - Removed conditional opacity to keep it visible if preferred, or simplified */}
       
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
       

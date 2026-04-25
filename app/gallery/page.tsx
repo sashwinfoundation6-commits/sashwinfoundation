@@ -7,7 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import RevealOnScroll from "@/components/shared/RevealOnScroll";
 
-const galleryCategories = ["All", "Residential", "Commercial", "Interiors", "Mishti Resorts"];
+const galleryCategories = ["All", "Residential", "Commercial", "Interiors", "Mishti Resorts", "Architectural Plans"];
 
 import { db } from "@/lib/firebase";
 import { collection, query, orderBy } from "firebase/firestore";
