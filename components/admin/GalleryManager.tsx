@@ -26,7 +26,7 @@ import ImageUpload from "./ImageUpload";
 import AdminModal from "./AdminModal";
 import Image from "next/image";
 
-const categories = ["All Assets", "Residential", "Commercial", "Interiors", "Mishti Resorts", "Architectural Plans"];
+const categories = ["All", "Residential", "Commercial", "Interiors", "Mishti Resorts", "Architectural Plans"];
 
 interface GalleryItem {
   id: string;
@@ -37,7 +37,7 @@ interface GalleryItem {
 
 export default function GalleryManager() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All Assets");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   
   const [form, setForm] = useState({ title: "", category: "Residential", img: "" });
@@ -95,7 +95,7 @@ export default function GalleryManager() {
   };
 
   const filteredDocs = value?.docs.filter(doc => {
-    if (selectedCategory === "All Assets") return true;
+    if (selectedCategory === "All") return true;
     return (doc.data() as GalleryItem).category === selectedCategory;
   });
 
@@ -226,7 +226,7 @@ export default function GalleryManager() {
                 <div className="space-y-3">
                   <label className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">Target Category</label>
                   <div className="flex flex-wrap gap-2">
-                    {categories.filter(c => c !== "All Assets").map((cat) => (
+                    {categories.filter(c => c !== "All").map((cat) => (
                       <button
                         key={cat}
                         type="button"

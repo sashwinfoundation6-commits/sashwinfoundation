@@ -27,17 +27,17 @@ import ImageUpload from "./ImageUpload";
 import AdminModal from "./AdminModal";
 import Image from "next/image";
 
-const categories = ["All Categories", "Portfolio Showcase", "Basement Level", "Lintel Level", "Sill Level", "Still Level"];
+const categories = ["All", "Residential Masterpiece", "Commercial Venture", "Mishti Asset", "Signature Interior", "Construction Progress"];
 
 export default function ProjectManager() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   
   const [form, setForm] = useState({
     title: "",
     location: "",
-    type: "Portfolio Showcase",
+    type: "Residential Masterpiece",
     image: "",
     status: "Under Construction",
     features: [] as string[]
@@ -104,7 +104,7 @@ export default function ProjectManager() {
   };
 
   const filteredDocs = value?.docs.filter(doc => {
-    if (selectedCategory === "All Categories") return true;
+    if (selectedCategory === "All") return true;
     return (doc.data() as { type: string }).type === selectedCategory;
   });
 
@@ -247,7 +247,7 @@ export default function ProjectManager() {
                   onChange={(e) => setForm({ ...form, type: e.target.value })}
                   className="w-full bg-slate-50 border border-slate-200 rounded-[1.5rem] px-6 py-5 text-sm font-bold text-slate-900 outline-none focus:border-gold transition-all appearance-none cursor-pointer"
                 >
-                  {categories.filter(c => c !== "All Categories").map(cat => (
+                  {categories.filter(c => c !== "All").map(cat => (
                     <option key={cat} value={cat}>{cat}</option>
                   ))}
                 </select>

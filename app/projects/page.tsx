@@ -7,14 +7,18 @@ import RevealOnScroll from "@/components/shared/RevealOnScroll";
 import CTAButton from "@/components/shared/CTAButton";
 import GlassCard from "@/components/shared/GlassCard";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, query, orderBy } from "firebase/firestore";
+import { collection, query, orderBy, where } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function ResidentialProjects() {
   const [value, loading, error] = useCollection(
-    query(collection(db, "projects"), orderBy("createdAt", "desc"))
+    query(
+      collection(db, "projects"), 
+      where("type", "==", "Residential Masterpiece"),
+      orderBy("createdAt", "desc")
+    )
   );
 
   return (
