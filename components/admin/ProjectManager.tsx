@@ -28,22 +28,17 @@ import AdminModal from "./AdminModal";
 import Image from "next/image";
 
 const categories = [
-  "All", 
   "Residential Masterpiece", 
   "Commercial Venture", 
   "Mishti Asset", 
   "Signature Interior", 
   "Construction Progress",
-  "Architectural Plans",
-  "Residential",
-  "Commercial",
-  "Interiors",
-  "Mishti Resorts"
+  "Architectural Plans"
 ];
 
 export default function ProjectManager() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   
   const [form, setForm] = useState({
@@ -67,7 +62,7 @@ export default function ProjectManager() {
   );
 
   const resetForm = () => {
-    setForm({ title: "", location: "", type: "Portfolio Showcase", image: "", status: "Under Construction", features: [] });
+    setForm({ title: "", location: "", type: "Residential Masterpiece", image: "", status: "Under Construction", features: [] });
     setIsEditing(false);
     setEditingId(null);
     setIsModalOpen(false);
@@ -77,7 +72,7 @@ export default function ProjectManager() {
     setForm({ 
       title: project.title, 
       location: project.location, 
-      type: project.type || "Portfolio Showcase", 
+      type: project.type || "Residential Masterpiece", 
       image: project.image, 
       status: project.status, 
       features: project.features || [] 
@@ -169,6 +164,16 @@ export default function ProjectManager() {
                   {selectedCategory === cat && <Check className="w-4 h-4 text-gold" />}
                 </button>
               ))}
+              <button
+                onClick={() => { setSelectedCategory("All"); setIsCategoryOpen(false); }}
+                className={`
+                  w-full flex items-center justify-between px-6 py-4 rounded-2xl transition-all text-[10px] font-bold uppercase tracking-widest mt-2 border-t border-slate-50 pt-4
+                  ${selectedCategory === "All" ? "bg-gold/10 text-slate-900" : "hover:bg-slate-50 text-slate-500 hover:text-slate-900"}
+                `}
+              >
+                <span className="tracking-widest">Show All Assets</span>
+                {selectedCategory === "All" && <Check className="w-4 h-4 text-gold" />}
+              </button>
             </div>
           )}
         </div>
@@ -216,7 +221,7 @@ export default function ProjectManager() {
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-gold mb-2">
                        <div className="h-0.5 w-4 bg-gold rounded-full" />
-                       <span className="text-[9px] font-black uppercase tracking-[0.3em]">{project.type || "Portfolio Showcase"}</span>
+                       <span className="text-[9px] font-black uppercase tracking-[0.3em]">{project.type || "Legacy Asset"}</span>
                     </div>
                     <h4 className="text-3xl font-display text-slate-900 uppercase tracking-tighter leading-tight group-hover:text-gold transition-colors">{project.title}</h4>
                   </div>

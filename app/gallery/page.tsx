@@ -28,14 +28,23 @@ export default function GalleryPage() {
   const galleryItems = value?.docs
     .map(doc => {
       const data = doc.data();
+      const rawCategory = data.type || data.category;
+      
+      // Unified Mapping logic
+      let mappedCategory = rawCategory;
+      if (rawCategory === "Residential Masterpiece") mappedCategory = "Residential";
+      if (rawCategory === "Commercial Venture") mappedCategory = "Commercial";
+      if (rawCategory === "Signature Interior") mappedCategory = "Interiors";
+      if (rawCategory === "Mishti Asset") mappedCategory = "Mishti Resorts";
+      
       return { 
         id: doc.id, 
         img: data.image || data.img, 
         title: data.title, 
-        category: data.type || data.category 
+        category: mappedCategory 
       };
     })
-    .filter(item => galleryCategories.includes(item.category) || item.category === "All") || [];
+    .filter(item => galleryCategories.includes(item.category) || item.category === "All" || item.category === "Portfolio Showcase") || [];
 
   const filteredItems = activeCategory === "All" 
     ? galleryItems 
