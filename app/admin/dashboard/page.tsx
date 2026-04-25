@@ -9,7 +9,6 @@ import {
   LogOut, 
   Globe,
   LayoutDashboard,
-  Image as ImageIcon,
   Settings,
   ShieldCheck,
   Menu,
@@ -17,9 +16,8 @@ import {
   CheckCircle2
 } from "lucide-react";
 import ProjectManager from "@/components/admin/ProjectManager";
-import GalleryManager from "@/components/admin/GalleryManager";
 
-type Tab = "projects" | "gallery" | "settings";
+type Tab = "projects" | "settings";
 
 export default function AdminDashboard() {
   const [user, setUser] = useState<FirebaseUser | null>(null);
@@ -129,7 +127,6 @@ export default function AdminDashboard() {
           <p className="text-[9px] font-black text-white/20 uppercase tracking-[0.4em] mb-6 px-6">Universal Control</p>
           <nav className="space-y-2">
             <NavItem id="projects" label="Project Registry" icon={LayoutDashboard} />
-            <NavItem id="gallery" label="Visual Gallery" icon={ImageIcon} />
             <NavItem id="settings" label="Hub Settings" icon={Settings} />
           </nav>
         </div>
@@ -183,7 +180,6 @@ export default function AdminDashboard() {
         <div className="flex-1 p-10 lg:p-16 max-w-7xl">
            <div className="relative">
               {activeTab === "projects" && <ProjectManager />}
-              {activeTab === "gallery" && <GalleryManager />}
               {activeTab === "settings" && (
                 <div className="bg-white border border-slate-200 p-20 rounded-[3.5rem] text-center space-y-6 shadow-sm">
                   <div className="w-24 h-24 bg-slate-50 rounded-[2rem] flex items-center justify-center mx-auto text-slate-200 border border-slate-100">
@@ -234,9 +230,8 @@ export default function AdminDashboard() {
                   </button>
                </div>
                <nav className="flex-1 space-y-2">
-                  <NavItem id="projects" label="Projects" icon={LayoutDashboard} />
-                  <NavItem id="gallery" label="Gallery" icon={ImageIcon} />
-                  <NavItem id="settings" label="Settings" icon={Settings} />
+                  <NavItem id="projects" label="Project Registry" icon={LayoutDashboard} />
+                  <NavItem id="settings" label="Hub Settings" icon={Settings} />
                </nav>
                <button 
                  onClick={handleLogout}

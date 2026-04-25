@@ -25,21 +25,18 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 80);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Scroll listener removed for persistent standard position
   }, []);
 
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-[110] transition-all duration-500",
-        isScrolled ? "h-16 lg:h-20 bg-void/90 backdrop-blur-2xl shadow-2xl" : "h-20 lg:h-28 bg-transparent"
+        "fixed top-0 left-0 right-0 z-[110] transition-all duration-300",
+        "h-20 lg:h-24 bg-void/80 backdrop-blur-2xl border-b border-white/5 shadow-2xl"
       )}
     >
       {/* Background Layer - Removed conditional opacity to keep it visible if preferred, or simplified */}

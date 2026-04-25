@@ -27,7 +27,19 @@ import ImageUpload from "./ImageUpload";
 import AdminModal from "./AdminModal";
 import Image from "next/image";
 
-const categories = ["All", "Residential Masterpiece", "Commercial Venture", "Mishti Asset", "Signature Interior", "Construction Progress"];
+const categories = [
+  "All", 
+  "Residential Masterpiece", 
+  "Commercial Venture", 
+  "Mishti Asset", 
+  "Signature Interior", 
+  "Construction Progress",
+  "Architectural Plans",
+  "Residential",
+  "Commercial",
+  "Interiors",
+  "Mishti Resorts"
+];
 
 export default function ProjectManager() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -124,7 +136,7 @@ export default function ProjectManager() {
       {/* Hero Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
         <div className="space-y-2">
-          <h2 className="text-6xl font-display text-slate-900 uppercase tracking-tighter leading-none">{selectedCategory}</h2>
+          <h2 className="text-6xl font-display text-slate-900 tracking-tighter leading-none">{selectedCategory}</h2>
           <div className="flex items-center gap-4">
              <div className="h-1 w-12 bg-gold rounded-full" />
              <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Active Portfolio Registry</p>
@@ -138,7 +150,7 @@ export default function ProjectManager() {
             className="flex items-center gap-4 px-8 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-gold transition-all group"
           >
             <Filter className="w-4 h-4 text-slate-400 group-hover:text-gold" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-900">{selectedCategory}</span>
+            <span className="text-[10px] font-black tracking-widest text-slate-900">{selectedCategory}</span>
             <ChevronDown className={`w-4 h-4 text-slate-300 transition-transform duration-300 ${isCategoryOpen ? "rotate-180" : ""}`} />
           </button>
 
@@ -153,7 +165,7 @@ export default function ProjectManager() {
                     ${selectedCategory === cat ? "bg-gold/10 text-slate-900" : "hover:bg-slate-50 text-slate-500 hover:text-slate-900"}
                   `}
                 >
-                  {cat}
+                  <span className="tracking-widest">{cat}</span>
                   {selectedCategory === cat && <Check className="w-4 h-4 text-gold" />}
                 </button>
               ))}

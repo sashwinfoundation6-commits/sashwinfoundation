@@ -22,10 +22,20 @@ export default function GalleryPage() {
   } | null>(null);
 
   const [value, loading, error] = useCollection(
-    query(collection(db, "gallery"), orderBy("createdAt", "desc"))
+    query(collection(db, "projects"), orderBy("createdAt", "desc"))
   );
 
-  const galleryItems = value?.docs.map(doc => ({ id: doc.id, ...(doc.data() as { img: string, title: string, category: string }) })) || [];
+  const galleryItems = value?.docs
+    .map(doc => {
+      const data = doc.data();
+      return { 
+        id: doc.id, 
+        img: data.image || data.img, 
+        title: data.title, 
+        category: data.type || data.category 
+      };
+    })
+    .filter(item => galleryCategories.includes(item.category) || item.category === "All") || [];
 
   const filteredItems = activeCategory === "All" 
     ? galleryItems 
