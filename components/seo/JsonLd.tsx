@@ -29,6 +29,7 @@ export default function JsonLd() {
     "@id": "https://sashwinfoundation.com",
     "url": "https://sashwinfoundation.com",
     "telephone": COMPANY_DATA.contact.primary,
+    "priceRange": "₹₹₹",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": COMPANY_DATA.offices[0].address,
@@ -39,8 +40,8 @@ export default function JsonLd() {
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 11.0168,
-      "longitude": 76.9558
+      "latitude": 11.0506,
+      "longitude": 76.9416
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -54,8 +55,68 @@ export default function JsonLd() {
       ],
       "opens": "09:00",
       "closes": "18:00"
+    }
+  };
+
+  const chennaiBranchSchema = {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": `${COMPANY_DATA.name} - Chennai Branch`,
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": COMPANY_DATA.name
     },
-    "priceRange": "₹₹₹"
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": COMPANY_DATA.offices[1].address,
+      "addressLocality": "Chennai",
+      "postalCode": "600110",
+      "addressRegion": "TN",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 13.1365,
+      "longitude": 80.2223
+    },
+    "telephone": COMPANY_DATA.contact.primary
+  };
+
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Luxury Construction & Architectural Design",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": COMPANY_DATA.name
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Coimbatore" },
+      { "@type": "City", "name": "Chennai" },
+      { "@type": "State", "name": "Tamil Nadu" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Construction Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Residential Construction",
+            "description": "Luxury 2BHK and 3BHK villa construction with integrated interior design."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Resort Community Investment",
+            "description": "Fractional ownership in luxury resort assets like Mishti Holiday Homes."
+          }
+        }
+      ]
+    }
   };
 
   const mishtiProjectSchema = {
@@ -80,6 +141,14 @@ export default function JsonLd() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(chennaiBranchSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
       />
       <script
         type="application/ld+json"

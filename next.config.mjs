@@ -8,6 +8,23 @@ const nextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "all",
+          },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self';",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {

@@ -36,13 +36,18 @@ export const metadata: Metadata = {
   description: "25+ years of luxury construction, interior design and resort investment in South India. Explore Mishti Holiday Homes — exclusive 35-share luxury resort community in Coimbatore. ISO compliant architectural truth.",
   keywords: [
     "luxury construction coimbatore", 
-    "resort investment india", 
     "Sashwin Foundation", 
-    "Mishti Holiday Homes", 
+    "resort investment india", 
+    "Mishti Holiday Homes Coimbatore", 
     "architectural design Coimbatore",
     "structural engineering Chennai",
     "luxury interior designers Coimbatore",
-    "real estate investment South India"
+    "real estate investment South India",
+    "villa construction Coimbatore",
+    "apartment builders Coimbatore",
+    "property developers Chennai",
+    "best builders in Coimbatore",
+    "top construction companies in Tamil Nadu"
   ],
   authors: [{ name: "Sashwin Foundation" }],
   creator: "Sashwin Foundation",
@@ -53,11 +58,14 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://sashwinfoundation.com",
+    languages: {
+      "en-IN": "https://sashwinfoundation.com",
+    },
   },
   openGraph: {
     title: "Sashwin Foundation | Luxury Construction & Resort Investment",
-    description: "Architectural truth and generational wealth creation through luxury construction and resort assets.",
+    description: "Architectural truth and generational wealth creation through luxury construction and resort assets. 25+ years of excellence in Coimbatore & Chennai.",
     url: "https://sashwinfoundation.com",
     siteName: "Sashwin Foundation",
     images: [
@@ -74,12 +82,14 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sashwin Foundation | Architectural Excellence",
-    description: "25+ years of building assets, not expenses.",
+    description: "25+ years of building assets, not expenses. Luxury builders in Coimbatore & Chennai.",
     images: ["/images/hero-luxury.png"],
+    creator: "@SashwinFound",
   },
   robots: {
     index: true,
     follow: true,
+    nocache: true,
     googleBot: {
       index: true,
       follow: true,
@@ -88,9 +98,24 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  manifest: "/manifest.json",
   verification: {
-    google: "google-site-verification-id", // User should update this
+    google: "google-site-verification-id", 
+    yandex: "yandex-id",
+    me: "contact-email@example.com",
   },
+  other: {
+    "geo.region": "IN-TN",
+    "geo.placename": "Coimbatore, Chennai",
+    "geo.position": "11.0506;76.9416",
+    "ICBM": "11.0506, 76.9416",
+    "apple-mobile-web-app-title": "Sashwin Foundation",
+    "application-name": "Sashwin Foundation",
+    "theme-color": "#0F172A",
+    "msapplication-TileColor": "#0F172A",
+    "format-detection": "telephone=no, address=no, email=no",
+    "google-business-id": "Sashwin-Foundation-Coimbatore",
+  }
 };
 
 import PageTransition from "@/components/shared/PageTransition";
